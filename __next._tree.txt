@@ -1,0 +1,10 @@
+:HL["/_next/static/chunks/12--840au71ox.css","style"]
+:HL["/_next/static/media/797e433ab948586e-s.p.08e28id.o-okb.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+:HL["/_next/static/media/caa3a2e1cccd8315-s.p.09~u27dqhyhd6.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+:HL["/samarth-melghat-logo.png","image"]
+:HL["https://hebbkx1anhila5yf.public.blob.vercel-storage.com/ChatGPT%20Image%20Jun%2016%2C%202026%2C%2011_45_50%20PM-5PbpZ9V8K1zqs3aoWTQ76EmjljBmVa.png","image"]
+:HL["https://hebbkx1anhila5yf.public.blob.vercel-storage.com/ChatGPT%20Image%20Jun%2016%2C%202026%2C%2011_54_48%20PM-rkHDQmq1RS7wSfVsMfL7GFZ4wONuTf.png","image"]
+:HL["https://hebbkx1anhila5yf.public.blob.vercel-storage.com/ChatGPT%20Image%20Jun%2016%2C%202026%2C%2010_24_53%20PM-mUBQpYvpTnBjd3brtBwhoZ2Cd3LC9J.png","image"]
+:HL["https://hebbkx1anhila5yf.public.blob.vercel-storage.com/ChatGPT%20Image%20Jun%2016%2C%202026%2C%2011_47_44%20PM-Al3oNPBCSoPz66bHoSsHpvyDZkX6IL.png","image"]
+:HL["https://hebbkx1anhila5yf.public.blob.vercel-storage.com/ChatGPT%20Image%20Jun%2016%2C%202026%2C%2007_42_58%20PM-iQ1f735QHnhiAqUQkc7Nd3TwXzVHKZ.png","image"]
+0:{"tree":{"name":"","param":null,"prefetchHints":16,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":0,"slots":null}}},"staleTime":300,"buildId":"CfI-VJ8V1ICZ0lfPsuldU"}
