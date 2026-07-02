@@ -3,853 +3,695 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Samarth Melghat — Tribal Heritage & Pilgrimage Tourism</title>
+  <title>Samarth Melghat — A Vision for Tribal Transformation</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://code.iconify.design/3/3.1.0/iconify.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
   <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            brand: { 50: '#fff7ed', 100: '#ffedd5', 400: '#fb923c', 500: '#f97316', 600: '#ea580c' },
-            surface: { 50: '#fafafa', 100: '#f5f5f5', 200: '#e5e5e5', 800: '#1c1917', 900: '#0c0a09' }
-          },
-          fontFamily: { inter: ['Inter', 'sans-serif'] }
-        }
-      }
-    }
+    tailwind.config={theme:{extend:{colors:{brand:{50:'#fff7ed',100:'#ffedd5',400:'#fb923c',500:'#f97316',600:'#ea580c'},surface:{50:'#fafafa',100:'#f5f5f5',200:'#e5e5e5',800:'#1c1917',900:'#0c0a09'}},fontFamily:{inter:['Inter','sans-serif']}}}}
   </script>
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { font-family: 'Inter', sans-serif; background: #fafafa; color: #1c1917; overflow-x: hidden; }
-    ::-webkit-scrollbar { width: 5px; }
-    ::-webkit-scrollbar-track { background: #fafafa; }
-    ::-webkit-scrollbar-thumb { background: #d4d4d4; border-radius: 3px; }
-    ::-webkit-scrollbar-thumb:hover { background: #a3a3a3; }
-
-    .hero-slide { position: absolute; inset: -5%; opacity: 0; transition: opacity 1.8s cubic-bezier(0.4, 0, 0.2, 1); }
-    .hero-slide.active { opacity: 1; }
-    .hero-slide.active img { animation: slowZoom 7s ease-out forwards; }
-    @keyframes slowZoom { from { transform: scale(1); } to { transform: scale(1.08); } }
-
-    .hero-location { position: absolute; bottom: 120px; left: 40px; z-index: 10; }
-    .hero-location-text { font-size: clamp(13px, 1.8vw, 16px); font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(255,255,255,0.85); display: flex; align-items: center; gap: 12px; opacity: 0; transform: translateY(20px); }
-    .hero-location-text.visible { opacity: 1; transform: translateY(0); transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
-    .hero-location-dot { width: 7px; height: 7px; border-radius: 50%; background: #fb923c; box-shadow: 0 0 10px rgba(249,115,22,0.5); animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite; }
-    @keyframes pulse { 50% { opacity: 0.5; } }
-
-    .char { display: inline-block; }
-
-    .card-lift { transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease; }
-    .card-lift:hover { transform: translateY(-4px); box-shadow: 0 20px 40px -12px rgba(0,0,0,0.08); }
-
-    .experience-card { min-width: 360px; height: 480px; flex-shrink: 0; }
-    @media (max-width: 768px) { .experience-card { min-width: 290px; height: 420px; } }
-
-    .progress-bar { position: fixed; top: 0; left: 0; height: 2.5px; background: linear-gradient(90deg, #f97316, #fb923c); z-index: 9999; transform-origin: left; }
-
-    .nav-solid { background: rgba(250,250,250,0.85); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border-bottom: 1px solid rgba(0,0,0,0.06); box-shadow: 0 1px 3px rgba(0,0,0,0.03); }
-
-    .light-overlay { background: linear-gradient(to top, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.5) 40%, rgba(0,0,0,0.15) 100%); }
-    .light-side-overlay { background: linear-gradient(to right, rgba(255,255,255,0.4) 0%, transparent 60%); }
-
-    .stat-divider { width: 1px; height: 48px; background: #e5e5e5; }
-
-    @media (prefers-reduced-motion: reduce) {
-      .hero-slide.active img { animation: none; }
-      .hero-location-dot { animation: none; }
-      * { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }
-    }
+    *{margin:0;padding:0;box-sizing:border-box}
+    body{font-family:'Inter',sans-serif;background:#fafafa;color:#1c1917;overflow-x:hidden}
+    ::-webkit-scrollbar{width:4px}
+    ::-webkit-scrollbar-track{background:#fafafa}
+    ::-webkit-scrollbar-thumb{background:#d4d4d4;border-radius:2px}
+    .hero-slide{position:absolute;inset:-8%;opacity:0;transition:opacity 2s cubic-bezier(.4,0,.2,1)}
+    .hero-slide.active{opacity:1}
+    .hero-slide.active img{animation:sz 8s ease-out forwards}
+    @keyframes sz{from{transform:scale(1)}to{transform:scale(1.08)}}
+    .hero-loc{position:absolute;bottom:90px;left:0;right:0;z-index:10;text-align:center;padding:0 20px}
+    .hero-loc-text{font-size:10px;font-weight:500;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.85);display:inline-flex;align-items:center;gap:8px;opacity:0;transform:translateY(15px)}
+    .hero-loc-text.visible{opacity:1;transform:translateY(0);transition:all .7s cubic-bezier(.16,1,.3,1)}
+    .hero-loc-dot{width:5px;height:5px;border-radius:50%;background:#fb923c;box-shadow:0 0 8px rgba(249,115,22,.5);animation:pu 2s cubic-bezier(.4,0,.6,1) infinite}
+    @keyframes pu{50%{opacity:.5}}
+    .char{display:inline-block}
+    .cl{transition:transform .4s cubic-bezier(.16,1,.3,1),box-shadow .4s ease}
+    .cl:hover{transform:translateY(-2px);box-shadow:0 12px 24px -6px rgba(0,0,0,.06)}
+    .pb{position:fixed;top:0;left:0;height:2px;background:linear-gradient(90deg,#f97316,#fb923c);z-index:9999;transform-origin:left}
+    .ns{background:rgba(250,250,250,.92);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid rgba(0,0,0,.05);box-shadow:0 1px 2px rgba(0,0,0,.02)}
+    .lo{background:linear-gradient(to top,rgba(250,250,250,.97) 0%,rgba(250,250,250,.5) 35%,rgba(0,0,0,.12) 100%)}
+    .lso{background:linear-gradient(to right,rgba(250,250,250,.3) 0%,transparent 50%)}
+    .vb{display:inline-flex;align-items:center;gap:5px;background:linear-gradient(135deg,#fff7ed,#ffedd5);border:1px solid #ffedd5}
+    .pcard{min-width:300px;height:440px;flex-shrink:0}
+    @media(min-width:640px){.pcard{min-width:340px;height:470px}}
+    @media(prefers-reduced-motion:reduce){.hero-slide.active img{animation:none}.hero-loc-dot{animation:none}*{transition-duration:.01ms!important;animation-duration:.01ms!important}}
   </style>
 </head>
 <body>
 
-  <div class="progress-bar" id="progressBar"></div>
+<div class="pb" id="progressBar"></div>
 
-  <!-- Navigation -->
-  <nav id="nav" class="fixed top-0 left-0 right-0 z-50 transition-all duration-500">
-    <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
-      <a href="#" class="flex items-center gap-2.5">
-        <div class="w-7 h-7 rounded-lg bg-gradient-to-br from-brand-400 to-brand-600 flex items-center justify-center shadow-sm shadow-brand-500/20">
-          <span class="iconify text-white text-xs" data-icon="lucide:mountain"></span>
-        </div>
-        <span class="font-semibold text-sm tracking-tight text-surface-800">SAMARTH MELGHAT</span>
+<!-- Nav -->
+<nav id="nav" class="fixed top-0 left-0 right-0 z-50 transition-all duration-500">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 h-14 sm:h-16 flex items-center justify-between">
+    <a href="#" class="flex items-center gap-2">
+      <div class="w-6 h-6 sm:w-7 sm:h-7 rounded-md sm:rounded-lg bg-gradient-to-br from-brand-400 to-brand-600 flex items-center justify-center shadow-sm shadow-brand-500/20">
+        <span class="iconify text-white text-[10px] sm:text-xs" data-icon="lucide:mountain"></span>
+      </div>
+      <div class="flex flex-col">
+        <span class="font-semibold text-[11px] sm:text-[13px] tracking-tight text-surface-800 leading-none">SAMARTH MELGHAT</span>
+        <span class="text-[7px] sm:text-[9px] font-medium text-brand-500 tracking-[.14em] sm:tracking-[.2em] uppercase leading-none mt-0.5">Vision 2030</span>
+      </div>
+    </a>
+    <div class="hidden md:flex items-center gap-7">
+      <a href="#vision" class="text-[11px] font-medium text-stone-400 hover:text-surface-800 transition-colors tracking-[.1em] uppercase">The Vision</a>
+      <a href="#empowerment" class="text-[11px] font-medium text-stone-400 hover:text-surface-800 transition-colors tracking-[.1em] uppercase">Empowerment</a>
+      <a href="#heritage" class="text-[11px] font-medium text-stone-400 hover:text-surface-800 transition-colors tracking-[.1em] uppercase">Heritage</a>
+      <a href="#pillars" class="text-[11px] font-medium text-stone-400 hover:text-surface-800 transition-colors tracking-[.1em] uppercase">Pillars</a>
+      <a href="#story" class="text-[11px] font-medium text-stone-400 hover:text-surface-800 transition-colors tracking-[.1em] uppercase">The Story</a>
+    </div>
+    <div class="flex items-center gap-2">
+      <a href="#join" class="hidden sm:inline-flex items-center gap-1.5 bg-surface-800 hover:bg-surface-900 text-white text-[10px] sm:text-[11px] font-semibold px-3.5 sm:px-5 py-2 sm:py-2.5 rounded-lg transition-colors">Join the Movement</a>
+      <button id="menuBtn" class="md:hidden text-stone-500 hover:text-surface-800 transition-colors p-1"><span class="iconify text-xl" data-icon="lucide:menu"></span></button>
+    </div>
+  </div>
+  <div id="mobileMenu" class="md:hidden hidden bg-white/95 backdrop-blur-xl border-t border-stone-100">
+    <div class="px-4 py-3 flex flex-col gap-0.5">
+      <a href="#vision" class="ml text-sm text-stone-500 hover:text-surface-800 py-2.5 transition-colors">The Vision</a>
+      <a href="#empowerment" class="ml text-sm text-stone-500 hover:text-surface-800 py-2.5 transition-colors">Empowerment</a>
+      <a href="#heritage" class="ml text-sm text-stone-500 hover:text-surface-800 py-2.5 transition-colors">Heritage</a>
+      <a href="#pillars" class="ml text-sm text-stone-500 hover:text-surface-800 py-2.5 transition-colors">Pillars</a>
+      <a href="#story" class="ml text-sm text-stone-500 hover:text-surface-800 py-2.5 transition-colors">The Story</a>
+      <a href="#join" class="ml bg-surface-800 text-white text-sm font-semibold px-4 py-2.5 rounded-lg text-center mt-2">Join the Movement</a>
+    </div>
+  </div>
+</nav>
+
+<!-- Hero -->
+<section class="relative h-screen min-h-[560px] sm:min-h-[640px] flex items-center justify-center overflow-hidden">
+  <div class="absolute inset-0 overflow-hidden">
+    <div class="hero-slide active" data-index="0"><img src="https://picsum.photos/seed/melghat-misty-hills/1920/1080.jpg" alt="" class="w-full h-full object-cover"></div>
+    <div class="hero-slide" data-index="1"><img src="https://picsum.photos/seed/tribal-children-school/1920/1080.jpg" alt="" class="w-full h-full object-cover"></div>
+    <div class="hero-slide" data-index="2"><img src="https://picsum.photos/seed/ancient-fort-gate/1920/1080.jpg" alt="" class="w-full h-full object-cover"></div>
+    <div class="hero-slide" data-index="3"><img src="https://picsum.photos/seed/forest-road-development/1920/1080.jpg" alt="" class="w-full h-full object-cover"></div>
+    <div class="hero-slide" data-index="4"><img src="https://picsum.photos/seed/temple-sunrise-prayer/1920/1080.jpg" alt="" class="w-full h-full object-cover"></div>
+    <div class="absolute inset-0 lo"></div>
+    <div class="absolute inset-0 lso"></div>
+  </div>
+  <div class="hero-loc">
+    <div class="hero-loc-text visible" id="locationText">
+      <span class="hero-loc-dot"></span>
+      <span id="locationName">The Satpura Ranges · Melghat</span>
+    </div>
+  </div>
+  <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 text-center">
+    <div class="vb rounded-full px-3 sm:px-4 py-1 sm:py-1.5 mb-6 sm:mb-8 hf shadow-sm" style="opacity:0">
+      <span class="w-1.5 h-1.5 rounded-full bg-brand-500 animate-pulse"></span>
+      <span class="text-[9px] sm:text-[11px] font-semibold text-brand-600 tracking-wide">A Flagship Initiative for Tribal Maharashtra</span>
+    </div>
+    <h1 class="ht text-4xl sm:text-5xl md:text-7xl lg:text-[5.5rem] font-bold tracking-tight leading-[1.08] mb-4 sm:mb-6 text-surface-800" style="opacity:0">
+      Not just a place.<br><span class="bg-gradient-to-r from-brand-500 to-brand-600 bg-clip-text text-transparent">A promise.</span>
+    </h1>
+    <p class="hs text-sm sm:text-base md:text-lg font-light text-stone-500 max-w-md sm:max-w-lg mx-auto mb-8 sm:mb-10 leading-relaxed px-2" style="opacity:0">
+      Samarth Melghat is a vision to transform 1,676 sq.km of forgotten land into a model of tribal empowerment, heritage revival, and self-reliant prosperity.
+    </p>
+    <div class="hf flex flex-col sm:flex-row items-center justify-center gap-2.5 sm:gap-3" style="opacity:0">
+      <a href="#vision" class="group flex items-center gap-1.5 bg-surface-800 hover:bg-surface-900 text-white text-sm font-semibold px-6 sm:px-7 py-3 sm:py-3.5 rounded-xl transition-all duration-300 shadow-lg shadow-stone-900/10 w-full sm:w-auto justify-center">
+        Read the Vision
+        <span class="iconify text-sm group-hover:translate-x-0.5 transition-transform" data-icon="lucide:arrow-right"></span>
       </a>
-      <div class="hidden md:flex items-center gap-8">
-        <a href="#heritage" class="text-[11px] font-medium text-stone-400 hover:text-surface-800 transition-colors tracking-[0.12em] uppercase">Heritage</a>
-        <a href="#pilgrimage" class="text-[11px] font-medium text-stone-400 hover:text-surface-800 transition-colors tracking-[0.12em] uppercase">Pilgrimage</a>
-        <a href="#wildlife" class="text-[11px] font-medium text-stone-400 hover:text-surface-800 transition-colors tracking-[0.12em] uppercase">Wildlife</a>
-        <a href="#experiences" class="text-[11px] font-medium text-stone-400 hover:text-surface-800 transition-colors tracking-[0.12em] uppercase">Experiences</a>
-        <a href="#video" class="text-[11px] font-medium text-stone-400 hover:text-surface-800 transition-colors tracking-[0.12em] uppercase">Film</a>
-      </div>
-      <div class="flex items-center gap-3">
-        <a href="#connect" class="hidden sm:inline-flex items-center gap-2 bg-surface-800 hover:bg-surface-900 text-white text-[11px] font-semibold px-5 py-2.5 rounded-lg transition-colors">
-          Plan Visit
-        </a>
-        <button id="menuBtn" class="md:hidden text-stone-500 hover:text-surface-800 transition-colors">
-          <span class="iconify text-xl" data-icon="lucide:menu"></span>
-        </button>
-      </div>
+      <a href="#story" class="flex items-center gap-1.5 bg-white/80 hover:bg-white border border-stone-200 hover:border-stone-300 text-surface-800 text-sm font-medium px-6 sm:px-7 py-3 sm:py-3.5 rounded-xl transition-all duration-300 backdrop-blur-sm shadow-sm w-full sm:w-auto justify-center">
+        <span class="iconify text-sm" data-icon="lucide:play"></span>
+        Watch the Story
+      </a>
     </div>
-    <div id="mobileMenu" class="md:hidden hidden bg-white/95 backdrop-blur-xl border-t border-stone-100">
-      <div class="px-6 py-4 flex flex-col gap-1">
-        <a href="#heritage" class="mobile-link text-sm text-stone-500 hover:text-surface-800 py-2.5 transition-colors">Heritage</a>
-        <a href="#pilgrimage" class="mobile-link text-sm text-stone-500 hover:text-surface-800 py-2.5 transition-colors">Pilgrimage</a>
-        <a href="#wildlife" class="mobile-link text-sm text-stone-500 hover:text-surface-800 py-2.5 transition-colors">Wildlife</a>
-        <a href="#experiences" class="mobile-link text-sm text-stone-500 hover:text-surface-800 py-2.5 transition-colors">Experiences</a>
-        <a href="#video" class="mobile-link text-sm text-stone-500 hover:text-surface-800 py-2.5 transition-colors">Film</a>
-        <a href="#connect" class="mobile-link bg-surface-800 text-white text-sm font-semibold px-4 py-2.5 rounded-lg text-center mt-2">Plan Visit</a>
-      </div>
+  </div>
+  <div class="absolute bottom-6 sm:bottom-8 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-1.5 hf" style="opacity:0">
+    <span class="text-[8px] sm:text-[9px] font-medium text-stone-400 tracking-[.2em] uppercase">Scroll</span>
+    <div class="w-4 h-7 sm:w-5 sm:h-8 rounded-full border border-stone-300 flex items-start justify-center p-0.5 sm:p-1">
+      <div class="w-1 h-1 sm:h-1.5 bg-stone-400 rounded-full animate-bounce"></div>
     </div>
-  </nav>
+  </div>
+</section>
 
-  <!-- ===== HERO ===== -->
-  <section class="relative h-screen min-h-[600px] flex items-center justify-center overflow-hidden">
-    <div class="absolute inset-0 overflow-hidden">
-      <div class="hero-slide active" data-index="0">
-        <img src="https://picsum.photos/seed/melghat-chikhaldara-green/1920/1080.jpg" alt="Chikhaldara" class="w-full h-full object-cover">
-      </div>
-      <div class="hero-slide" data-index="1">
-        <img src="https://picsum.photos/seed/melghat-tiger-deep/1920/1080.jpg" alt="Tiger Reserve" class="w-full h-full object-cover">
-      </div>
-      <div class="hero-slide" data-index="2">
-        <img src="https://picsum.photos/seed/melghat-fort-ruins/1920/1080.jpg" alt="Narnala Fort" class="w-full h-full object-cover">
-      </div>
-      <div class="hero-slide" data-index="3">
-        <img src="https://picsum.photos/seed/melghat-tribal-huts/1920/1080.jpg" alt="Tribal Village" class="w-full h-full object-cover">
-      </div>
-      <div class="hero-slide" data-index="4">
-        <img src="https://picsum.photos/seed/melghat-temple-sunrise/1920/1080.jpg" alt="Bhavani Temple" class="w-full h-full object-cover">
-      </div>
-      <div class="absolute inset-0 light-overlay"></div>
-      <div class="absolute inset-0 light-side-overlay"></div>
+<!-- Stats -->
+<section class="relative z-10 bg-white border-b border-stone-100">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 py-8 sm:py-10 grid grid-cols-2 gap-y-6 gap-x-4 sm:flex sm:items-center sm:justify-center sm:gap-0">
+    <div class="text-center si flex-1" style="opacity:0;transform:translateY(12px)">
+      <div class="text-2xl sm:text-3xl md:text-4xl font-bold text-surface-800 tracking-tight"><span class="counter" data-target="47000">0</span></div>
+      <div class="text-[8px] sm:text-[10px] font-medium text-stone-400 mt-1 tracking-[.1em] uppercase leading-tight">Tribal Families<br class="sm:hidden"> to Benefit</div>
     </div>
-
-    <div class="hero-location">
-      <div class="hero-location-text visible" id="locationText">
-        <span class="hero-location-dot"></span>
-        <span id="locationName">Chikhaldara Hill Station</span>
-      </div>
+    <div class="text-center si flex-1" style="opacity:0;transform:translateY(12px)">
+      <div class="text-2xl sm:text-3xl md:text-4xl font-bold text-surface-800 tracking-tight">₹<span class="counter" data-target="3200">0</span><span class="text-brand-500">Cr</span></div>
+      <div class="text-[8px] sm:text-[10px] font-medium text-stone-400 mt-1 tracking-[.1em] uppercase leading-tight">Proposed<br class="sm:hidden"> Investment</div>
     </div>
+    <div class="text-center si flex-1 hidden sm:block" style="opacity:0;transform:translateY(12px)">
+      <div class="text-2xl sm:text-3xl md:text-4xl font-bold text-surface-800 tracking-tight"><span class="counter" data-target="6">0</span></div>
+      <div class="text-[8px] sm:text-[10px] font-medium text-stone-400 mt-1 tracking-[.1em] uppercase">Pillars of Transformation</div>
+    </div>
+    <div class="text-center si flex-1 hidden sm:block" style="opacity:0;transform:translateY(12px)">
+      <div class="text-2xl sm:text-3xl md:text-4xl font-bold text-surface-800 tracking-tight"><span class="counter" data-target="2030">0</span></div>
+      <div class="text-[8px] sm:text-[10px] font-medium text-stone-400 mt-1 tracking-[.1em] uppercase">Target Year</div>
+    </div>
+    <div class="hidden md:block w-px h-10 bg-stone-200"></div>
+    <div class="hidden md:block w-px h-10 bg-stone-200"></div>
+    <div class="hidden md:block w-px h-10 bg-stone-200"></div>
+  </div>
+</section>
 
-    <div class="relative z-10 max-w-7xl mx-auto px-6 text-center">
-      <div class="inline-flex items-center gap-2 bg-white/70 backdrop-blur-sm border border-white/50 rounded-full px-4 py-1.5 mb-8 hero-fade shadow-sm" style="opacity:0">
-        <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
-        <span class="text-[11px] font-medium text-stone-500 tracking-wide">Satpura Range · Maharashtra</span>
-      </div>
-      <h1 class="hero-title text-5xl md:text-7xl lg:text-[5.5rem] font-bold tracking-tight leading-[1.05] mb-6 text-surface-800" style="opacity:0">
-        Samarth<br>
-        <span class="bg-gradient-to-r from-brand-500 to-brand-600 bg-clip-text text-transparent">Melghat</span>
-      </h1>
-      <p class="hero-sub text-base md:text-lg font-light text-stone-500 max-w-xl mx-auto mb-10 leading-relaxed" style="opacity:0">
-        Where ancient tribal heritage meets sacred pilgrimage trails in the heart of untamed wilderness.
+<!-- Vision -->
+<section id="vision" class="py-16 sm:py-24 md:py-32 px-4 sm:px-6">
+  <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-10 sm:gap-14 lg:gap-20 items-center">
+    <div>
+      <div class="ar" style="opacity:0;transform:translateY(20px)"><span class="text-[10px] sm:text-[11px] font-semibold text-brand-500 tracking-[.18em] uppercase">The Vision</span></div>
+      <h2 class="ar text-2xl sm:text-3xl md:text-4xl lg:text-[2.75rem] font-semibold tracking-tight mt-3 sm:mt-4 leading-[1.15] text-surface-800" style="opacity:0;transform:translateY(20px)">
+        Melghat has been<br><span class="text-stone-300">neglected for decades.</span><br>That changes now.
+      </h2>
+      <p class="ar text-stone-500 font-light text-[15px] sm:text-[17px] leading-relaxed mt-5 sm:mt-6" style="opacity:0;transform:translateY(20px)">
+        For generations, the tribal communities of Melghat have lived on the margins — despite sitting on one of Maharashtra's most extraordinary ecological and cultural treasures. Samarth Melghat is not a tourism project. It is a comprehensive transformation blueprint.
       </p>
-      <div class="hero-fade flex flex-col sm:flex-row items-center justify-center gap-3" style="opacity:0">
-        <a href="#heritage" class="group flex items-center gap-2 bg-surface-800 hover:bg-surface-900 text-white text-sm font-semibold px-7 py-3.5 rounded-xl transition-all duration-300 shadow-lg shadow-stone-900/10 hover:shadow-xl hover:shadow-stone-900/15">
-          Explore Heritage
-          <span class="iconify text-sm group-hover:translate-x-0.5 transition-transform" data-icon="lucide:arrow-right"></span>
-        </a>
-        <a href="#video" class="flex items-center gap-2 bg-white/80 hover:bg-white border border-stone-200 hover:border-stone-300 text-surface-800 text-sm font-medium px-7 py-3.5 rounded-xl transition-all duration-300 backdrop-blur-sm shadow-sm">
-          <span class="iconify text-sm" data-icon="lucide:play"></span>
-          Watch Film
-        </a>
+      <p class="ar text-stone-400 font-light leading-relaxed mt-3 sm:mt-4 text-sm sm:text-base" style="opacity:0;transform:translateY(20px)">
+        We envision a Melghat where every tribal family has dignified livelihood, where ancient heritage fuels modern economy, where conservation and development are not enemies but allies.
+      </p>
+      <div class="ar mt-6 sm:mt-8 p-4 sm:p-5 bg-brand-50/60 border border-brand-100 rounded-xl" style="opacity:0;transform:translateY(20px)">
+        <div class="flex items-start gap-2.5 sm:gap-3">
+          <span class="iconify text-brand-500 text-base sm:text-lg mt-0.5 flex-shrink-0" data-icon="lucide:quote"></span>
+          <p class="text-[13px] sm:text-sm text-stone-600 font-medium italic leading-relaxed">
+            "Melghat will not remain a footnote in development reports. It will become the gold standard for how India empowers its tribal heartlands."
+          </p>
+        </div>
       </div>
     </div>
-
-    <div class="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-2 hero-fade" style="opacity:0">
-      <span class="text-[9px] font-medium text-stone-400 tracking-[0.25em] uppercase">Scroll</span>
-      <div class="w-5 h-8 rounded-full border border-stone-300 flex items-start justify-center p-1">
-        <div class="w-1 h-1.5 bg-stone-400 rounded-full animate-bounce"></div>
+    <div class="ai relative" style="opacity:0;transform:scale(.96)">
+      <div class="relative rounded-xl sm:rounded-2xl overflow-hidden aspect-[4/5] shadow-2xl shadow-stone-900/6">
+        <img src="https://picsum.photos/seed/melghat-village-hope/800/1000.jpg" alt="Melghat Vision" class="w-full h-full object-cover">
+      </div>
+      <div class="absolute -bottom-2 -left-2 sm:-bottom-3 sm:-left-3 bg-white rounded-lg sm:rounded-xl p-3 sm:p-4 shadow-lg shadow-stone-900/6 border border-stone-100">
+        <div class="flex items-center gap-2.5">
+          <div class="w-8 h-8 rounded-lg bg-emerald-50 flex items-center justify-center">
+            <span class="iconify text-emerald-600 text-sm" data-icon="lucide:trending-up"></span>
+          </div>
+          <div>
+            <div class="text-xs sm:text-sm font-semibold text-surface-800">Phase 1 Underway</div>
+            <div class="text-[10px] sm:text-[11px] text-stone-400">Infrastructure & Connectivity</div>
+          </div>
+        </div>
+      </div>
+      <div class="absolute -top-2 -right-2 sm:-top-3 sm:-right-3 bg-white rounded-lg sm:rounded-xl p-3 sm:p-4 shadow-lg shadow-stone-900/6 border border-stone-100">
+        <div class="flex items-center gap-2.5">
+          <div class="w-8 h-8 rounded-lg bg-brand-50 flex items-center justify-center">
+            <span class="iconify text-brand-500 text-sm" data-icon="lucide:flag"></span>
+          </div>
+          <div>
+            <div class="text-xs sm:text-sm font-semibold text-surface-800">National Model</div>
+            <div class="text-[10px] sm:text-[11px] text-stone-400">First-of-its-kind</div>
+          </div>
+        </div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- ===== STATS BAR ===== -->
-  <section class="relative z-10 bg-white border-b border-stone-100">
-    <div class="max-w-7xl mx-auto px-6 py-10 flex flex-col md:flex-row items-center justify-center gap-8 md:gap-0">
-      <div class="text-center stat-item flex-1" style="opacity:0;transform:translateY(15px)">
-        <div class="text-3xl md:text-4xl font-bold text-surface-800 tracking-tight"><span class="counter" data-target="1676">0</span></div>
-        <div class="text-[10px] font-medium text-stone-400 mt-1.5 tracking-[0.15em] uppercase">Sq.Km Reserve</div>
+<!-- Empowerment -->
+<section id="empowerment" class="py-16 sm:py-24 md:py-32 px-4 sm:px-6 bg-white">
+  <div class="max-w-7xl mx-auto">
+    <div class="text-center mb-10 sm:mb-16">
+      <span class="sl text-[10px] sm:text-[11px] font-semibold text-brand-500 tracking-[.18em] uppercase" style="opacity:0;transform:translateY(12px)">Core Principle</span>
+      <h2 class="sl text-2xl sm:text-3xl md:text-4xl font-semibold tracking-tight mt-3 sm:mt-4 text-surface-800" style="opacity:0;transform:translateY(12px)">Empowerment, <span class="text-stone-300">Not Charity</span></h2>
+      <p class="sl text-stone-400 font-light max-w-lg mx-auto mt-3 sm:mt-4 text-sm sm:text-[17px] px-2" style="opacity:0;transform:translateY(12px)">The tribal communities are not beneficiaries — they are partners, stakeholders, and the very soul of this movement.</p>
+    </div>
+    <div class="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-5">
+      <div class="hc cl bg-surface-50 border border-stone-100 rounded-xl sm:rounded-2xl overflow-hidden group" style="opacity:0;transform:translateY(25px)">
+        <div class="h-28 sm:h-44 overflow-hidden">
+          <img src="https://picsum.photos/seed/tribal-selfhelp-group/400/300.jpg" alt="" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+        </div>
+        <div class="p-3 sm:p-5">
+          <div class="w-7 h-7 sm:w-9 sm:h-9 rounded-md sm:rounded-lg bg-brand-50 flex items-center justify-center mb-2 sm:mb-3">
+            <span class="iconify text-brand-500 text-xs sm:text-sm" data-icon="lucide:handshake"></span>
+          </div>
+          <h3 class="text-[13px] sm:text-base font-semibold tracking-tight text-surface-800">Self-Help Revolutions</h3>
+          <p class="text-[11px] sm:text-sm text-stone-400 font-light mt-1 sm:mt-1.5 leading-relaxed hidden sm:block">350+ tribal women's SHGs into cooperative enterprises with market access.</p>
+        </div>
       </div>
-      <div class="stat-divider hidden md:block"></div>
-      <div class="text-center stat-item flex-1" style="opacity:0;transform:translateY(15px)">
-        <div class="text-3xl md:text-4xl font-bold text-surface-800 tracking-tight"><span class="counter" data-target="40">0</span><span class="text-brand-500">+</span></div>
-        <div class="text-[10px] font-medium text-stone-400 mt-1.5 tracking-[0.15em] uppercase">Royal Bengal Tigers</div>
+      <div class="hc cl bg-surface-50 border border-stone-100 rounded-xl sm:rounded-2xl overflow-hidden group" style="opacity:0;transform:translateY(25px)">
+        <div class="h-28 sm:h-44 overflow-hidden">
+          <img src="https://picsum.photos/seed/tribal-education-children/400/300.jpg" alt="" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+        </div>
+        <div class="p-3 sm:p-5">
+          <div class="w-7 h-7 sm:w-9 sm:h-9 rounded-md sm:rounded-lg bg-brand-50 flex items-center justify-center mb-2 sm:mb-3">
+            <span class="iconify text-brand-500 text-xs sm:text-sm" data-icon="lucide:graduation-cap"></span>
+          </div>
+          <h3 class="text-[13px] sm:text-base font-semibold tracking-tight text-surface-800">Education First</h3>
+          <p class="text-[11px] sm:text-sm text-stone-400 font-light mt-1 sm:mt-1.5 leading-relaxed hidden sm:block">Residential schools, Eklavya Model upgrades, digital learning centres.</p>
+        </div>
       </div>
-      <div class="stat-divider hidden md:block"></div>
-      <div class="text-center stat-item flex-1" style="opacity:0;transform:translateY(15px)">
-        <div class="text-3xl md:text-4xl font-bold text-surface-800 tracking-tight"><span class="counter" data-target="3">0</span></div>
-        <div class="text-[10px] font-medium text-stone-400 mt-1.5 tracking-[0.15em] uppercase">Ancient Tribes</div>
+      <div class="hc cl bg-surface-50 border border-stone-100 rounded-xl sm:rounded-2xl overflow-hidden group" style="opacity:0;transform:translateY(25px)">
+        <div class="h-28 sm:h-44 overflow-hidden">
+          <img src="https://picsum.photos/seed/tribal-health-camp/400/300.jpg" alt="" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+        </div>
+        <div class="p-3 sm:p-5">
+          <div class="w-7 h-7 sm:w-9 sm:h-9 rounded-md sm:rounded-lg bg-brand-50 flex items-center justify-center mb-2 sm:mb-3">
+            <span class="iconify text-brand-500 text-xs sm:text-sm" data-icon="lucide:heart-pulse"></span>
+          </div>
+          <h3 class="text-[13px] sm:text-base font-semibold tracking-tight text-surface-800">Health for All</h3>
+          <p class="text-[11px] sm:text-sm text-stone-400 font-light mt-1 sm:mt-1.5 leading-relaxed hidden sm:block">Mobile health units, malnutrition missions, 24/7 primary health centres.</p>
+        </div>
       </div>
-      <div class="stat-divider hidden md:block"></div>
-      <div class="text-center stat-item flex-1" style="opacity:0;transform:translateY(15px)">
-        <div class="text-3xl md:text-4xl font-bold text-surface-800 tracking-tight"><span class="counter" data-target="15">0</span><span class="text-brand-500">th</span></div>
-        <div class="text-[10px] font-medium text-stone-400 mt-1.5 tracking-[0.15em] uppercase">Century Forts</div>
+      <div class="hc cl bg-surface-50 border border-stone-100 rounded-xl sm:rounded-2xl overflow-hidden group" style="opacity:0;transform:translateY(25px)">
+        <div class="h-28 sm:h-44 overflow-hidden">
+          <img src="https://picsum.photos/seed/tribal-craft-market/400/300.jpg" alt="" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+        </div>
+        <div class="p-3 sm:p-5">
+          <div class="w-7 h-7 sm:w-9 sm:h-9 rounded-md sm:rounded-lg bg-brand-50 flex items-center justify-center mb-2 sm:mb-3">
+            <span class="iconify text-brand-500 text-xs sm:text-sm" data-icon="lucide:store"></span>
+          </div>
+          <h3 class="text-[13px] sm:text-base font-semibold tracking-tight text-surface-800">Dignified Livelihoods</h3>
+          <p class="text-[11px] sm:text-sm text-stone-400 font-light mt-1 sm:mt-1.5 leading-relaxed hidden sm:block">Craft brands, eco-tourism ownership, forest produce processing.</p>
+        </div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- ===== ABOUT ===== -->
-  <section class="py-24 md:py-32 px-6">
-    <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-14 lg:gap-20 items-center">
+<!-- Heritage Revival -->
+<section id="heritage" class="py-16 sm:py-24 md:py-32 px-4 sm:px-6">
+  <div class="max-w-7xl mx-auto">
+    <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between mb-10 sm:mb-16 gap-4 sm:gap-6">
       <div>
-        <div class="about-reveal" style="opacity:0;transform:translateY(25px)">
-          <span class="text-[11px] font-semibold text-brand-500 tracking-[0.2em] uppercase">Discover Melghat</span>
+        <span class="sl text-[10px] sm:text-[11px] font-semibold text-brand-500 tracking-[.18em] uppercase" style="opacity:0;transform:translateY(12px)">Heritage Revival</span>
+        <h2 class="sl text-2xl sm:text-3xl md:text-4xl font-semibold tracking-tight mt-3 sm:mt-4 text-surface-800" style="opacity:0;transform:translateY(12px)">Reclaiming What Was <span class="text-stone-300">Ours</span></h2>
+      </div>
+      <p class="sl text-stone-400 font-light max-w-sm text-sm sm:text-base" style="opacity:0;transform:translateY(12px)">These are not just old structures. They are symbols of identity. We will restore every single one.</p>
+    </div>
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-5">
+      <div class="pc cl bg-white border border-stone-100 rounded-xl sm:rounded-2xl p-4 sm:p-7 group cursor-pointer relative overflow-hidden" style="opacity:0;transform:translateY(25px)">
+        <span class="absolute top-3 sm:top-5 right-3 sm:right-6 text-5xl sm:text-6xl font-black text-stone-50 group-hover:text-brand-50 transition-colors duration-500 select-none">01</span>
+        <div class="w-9 h-9 sm:w-10 sm:h-10 rounded-lg sm:rounded-xl bg-brand-50 flex items-center justify-center mb-3 sm:mb-5 group-hover:bg-brand-100 transition-colors">
+          <span class="iconify text-brand-500 text-base sm:text-lg" data-icon="lucide:castle"></span>
         </div>
-        <h2 class="about-reveal text-3xl md:text-4xl lg:text-[2.75rem] font-semibold tracking-tight mt-4 leading-[1.15] text-surface-800" style="opacity:0;transform:translateY(25px)">
-          A land where<br>
-          <span class="text-stone-300">history breathes</span><br>
-          in every stone
-        </h2>
-        <p class="about-reveal text-stone-500 font-light text-[17px] leading-relaxed mt-6" style="opacity:0;transform:translateY(25px)">
-          Nestled in the Satpura ranges of Amravati district, Melghat is a living tapestry of tribal traditions, medieval fortifications, and pristine forests. The Samarth Melghat initiative bridges these worlds — inviting travellers to walk with the Korku people, trace ancient pilgrimage paths, and witness wildlife in its truest habitat.
-        </p>
-        <p class="about-reveal text-stone-400 font-light leading-relaxed mt-4" style="opacity:0;transform:translateY(25px)">
-          From the misty heights of Chikhaldara to the sacred groves of the Devrais, every trail tells a story that's waited centuries to be heard.
-        </p>
-        <div class="about-reveal flex items-center gap-4 mt-8" style="opacity:0;transform:translateY(25px)">
-          <div class="flex -space-x-2.5">
-            <img src="https://picsum.photos/seed/face-a/40/40.jpg" class="w-8 h-8 rounded-full border-2 border-white object-cover shadow-sm" alt="">
-            <img src="https://picsum.photos/seed/face-b/40/40.jpg" class="w-8 h-8 rounded-full border-2 border-white object-cover shadow-sm" alt="">
-            <img src="https://picsum.photos/seed/face-c/40/40.jpg" class="w-8 h-8 rounded-full border-2 border-white object-cover shadow-sm" alt="">
-            <div class="w-8 h-8 rounded-full border-2 border-white bg-brand-50 flex items-center justify-center text-[10px] font-semibold text-brand-600 shadow-sm">+2k</div>
-          </div>
-          <span class="text-sm text-stone-400"><span class="text-surface-800 font-medium">2,400+</span> travellers last year</span>
+        <h3 class="text-[15px] sm:text-lg font-semibold tracking-tight text-surface-800">Narnala Fort Restoration</h3>
+        <p class="text-[12px] sm:text-sm text-stone-400 font-light mt-1.5 sm:mt-2.5 leading-relaxed">Complete structural restoration, museum, light & sound show, and accessibility infrastructure.</p>
+        <div class="flex items-center gap-2 mt-3 sm:mt-5">
+          <span class="text-[9px] sm:text-[10px] font-semibold text-emerald-600 bg-emerald-50 px-2 sm:px-2.5 py-0.5 sm:py-1 rounded-full tracking-wide">APPROVED</span>
+          <span class="text-[9px] sm:text-[10px] text-stone-400">₹85 Cr</span>
         </div>
       </div>
-      <div class="about-img relative" style="opacity:0;transform:scale(0.96)">
-        <div class="relative rounded-2xl overflow-hidden aspect-[4/5] shadow-2xl shadow-stone-900/8">
-          <img src="https://picsum.photos/seed/melghat-green-valley/800/1000.jpg" alt="Melghat Landscape" class="w-full h-full object-cover">
+      <div class="pc cl bg-white border border-stone-100 rounded-xl sm:rounded-2xl p-4 sm:p-7 group cursor-pointer relative overflow-hidden" style="opacity:0;transform:translateY(25px)">
+        <span class="absolute top-3 sm:top-5 right-3 sm:right-6 text-5xl sm:text-6xl font-black text-stone-50 group-hover:text-brand-50 transition-colors duration-500 select-none">02</span>
+        <div class="w-9 h-9 sm:w-10 sm:h-10 rounded-lg sm:rounded-xl bg-brand-50 flex items-center justify-center mb-3 sm:mb-5 group-hover:bg-brand-100 transition-colors">
+          <span class="iconify text-brand-500 text-base sm:text-lg" data-icon="lucide:landmark"></span>
         </div>
-        <div class="absolute -bottom-3 -left-3 bg-white rounded-xl p-4 shadow-lg shadow-stone-900/8 border border-stone-100">
-          <div class="flex items-center gap-3">
-            <div class="w-9 h-9 rounded-lg bg-brand-50 flex items-center justify-center">
-              <span class="iconify text-brand-500 text-base" data-icon="lucide:map-pin"></span>
-            </div>
-            <div>
-              <div class="text-sm font-semibold text-surface-800">Amravati District</div>
-              <div class="text-[11px] text-stone-400">Maharashtra, India</div>
-            </div>
-          </div>
+        <h3 class="text-[15px] sm:text-lg font-semibold tracking-tight text-surface-800">Gavilgad Heritage Hub</h3>
+        <p class="text-[12px] sm:text-sm text-stone-400 font-light mt-1.5 sm:mt-2.5 leading-relaxed">Transforming the fort into a living heritage centre with artisan workshops and trails.</p>
+        <div class="flex items-center gap-2 mt-3 sm:mt-5">
+          <span class="text-[9px] sm:text-[10px] font-semibold text-amber-600 bg-amber-50 px-2 sm:px-2.5 py-0.5 sm:py-1 rounded-full tracking-wide">IN PROGRESS</span>
+          <span class="text-[9px] sm:text-[10px] text-stone-400">₹42 Cr</span>
+        </div>
+      </div>
+      <div class="pc cl bg-white border border-stone-100 rounded-xl sm:rounded-2xl p-4 sm:p-7 group cursor-pointer relative overflow-hidden" style="opacity:0;transform:translateY(25px)">
+        <span class="absolute top-3 sm:top-5 right-3 sm:right-6 text-5xl sm:text-6xl font-black text-stone-50 group-hover:text-brand-50 transition-colors duration-500 select-none">03</span>
+        <div class="w-9 h-9 sm:w-10 sm:h-10 rounded-lg sm:rounded-xl bg-brand-50 flex items-center justify-center mb-3 sm:mb-5 group-hover:bg-brand-100 transition-colors">
+          <span class="iconify text-brand-500 text-base sm:text-lg" data-icon="lucide:flame"></span>
+        </div>
+        <h3 class="text-[15px] sm:text-lg font-semibold tracking-tight text-surface-800">Pilgrimage Circuit</h3>
+        <p class="text-[12px] sm:text-sm text-stone-400 font-light mt-1.5 sm:mt-2.5 leading-relaxed">Connecting Bhavani Temple, Makhmai Devi, and sacred Devrai groves into a world-class route.</p>
+        <div class="flex items-center gap-2 mt-3 sm:mt-5">
+          <span class="text-[9px] sm:text-[10px] font-semibold text-blue-600 bg-blue-50 px-2 sm:px-2.5 py-0.5 sm:py-1 rounded-full tracking-wide">PLANNED</span>
+          <span class="text-[9px] sm:text-[10px] text-stone-400">₹120 Cr</span>
+        </div>
+      </div>
+      <div class="pc cl bg-white border border-stone-100 rounded-xl sm:rounded-2xl p-4 sm:p-7 group cursor-pointer relative overflow-hidden" style="opacity:0;transform:translateY(25px)">
+        <span class="absolute top-3 sm:top-5 right-3 sm:right-6 text-5xl sm:text-6xl font-black text-stone-50 group-hover:text-brand-50 transition-colors duration-500 select-none">04</span>
+        <div class="w-9 h-9 sm:w-10 sm:h-10 rounded-lg sm:rounded-xl bg-brand-50 flex items-center justify-center mb-3 sm:mb-5 group-hover:bg-brand-100 transition-colors">
+          <span class="iconify text-brand-500 text-base sm:text-lg" data-icon="lucide:trees"></span>
+        </div>
+        <h3 class="text-[15px] sm:text-lg font-semibold tracking-tight text-surface-800">Devrai Conservation Corps</h3>
+        <p class="text-[12px] sm:text-sm text-stone-400 font-light mt-1.5 sm:mt-2.5 leading-relaxed">Tribal youth as sacred grove guardians — blending worship with conservation science.</p>
+        <div class="flex items-center gap-2 mt-3 sm:mt-5">
+          <span class="text-[9px] sm:text-[10px] font-semibold text-emerald-600 bg-emerald-50 px-2 sm:px-2.5 py-0.5 sm:py-1 rounded-full tracking-wide">ACTIVE</span>
+          <span class="text-[9px] sm:text-[10px] text-stone-400">280 youth</span>
+        </div>
+      </div>
+      <div class="pc cl bg-white border border-stone-100 rounded-xl sm:rounded-2xl p-4 sm:p-7 group cursor-pointer relative overflow-hidden" style="opacity:0;transform:translateY(25px)">
+        <span class="absolute top-3 sm:top-5 right-3 sm:right-6 text-5xl sm:text-6xl font-black text-stone-50 group-hover:text-brand-50 transition-colors duration-500 select-none">05</span>
+        <div class="w-9 h-9 sm:w-10 sm:h-10 rounded-lg sm:rounded-xl bg-brand-50 flex items-center justify-center mb-3 sm:mb-5 group-hover:bg-brand-100 transition-colors">
+          <span class="iconify text-brand-500 text-base sm:text-lg" data-icon="lucide:palette"></span>
+        </div>
+        <h3 class="text-[15px] sm:text-lg font-semibold tracking-tight text-surface-800">Tribal Cultural Centre</h3>
+        <p class="text-[12px] sm:text-sm text-stone-400 font-light mt-1.5 sm:mt-2.5 leading-relaxed">Korku art, language preservation, oral history documentation, cultural exchange.</p>
+        <div class="flex items-center gap-2 mt-3 sm:mt-5">
+          <span class="text-[9px] sm:text-[10px] font-semibold text-amber-600 bg-amber-50 px-2 sm:px-2.5 py-0.5 sm:py-1 rounded-full tracking-wide">IN PROGRESS</span>
+          <span class="text-[9px] sm:text-[10px] text-stone-400">₹35 Cr</span>
+        </div>
+      </div>
+      <div class="pc cl bg-white border border-stone-100 rounded-xl sm:rounded-2xl p-4 sm:p-7 group cursor-pointer relative overflow-hidden" style="opacity:0;transform:translateY(25px)">
+        <span class="absolute top-3 sm:top-5 right-3 sm:right-6 text-5xl sm:text-6xl font-black text-stone-50 group-hover:text-brand-50 transition-colors duration-500 select-none">06</span>
+        <div class="w-9 h-9 sm:w-10 sm:h-10 rounded-lg sm:rounded-xl bg-brand-50 flex items-center justify-center mb-3 sm:mb-5 group-hover:bg-brand-100 transition-colors">
+          <span class="iconify text-brand-500 text-base sm:text-lg" data-icon="lucide:building-2"></span>
+        </div>
+        <h3 class="text-[15px] sm:text-lg font-semibold tracking-tight text-surface-800">Chikhaldara Smart Town</h3>
+        <p class="text-[12px] sm:text-sm text-stone-400 font-light mt-1.5 sm:mt-2.5 leading-relaxed">India's first smart tribal hill town — civic infra, digital governance, eco-sensitive planning.</p>
+        <div class="flex items-center gap-2 mt-3 sm:mt-5">
+          <span class="text-[9px] sm:text-[10px] font-semibold text-blue-600 bg-blue-50 px-2 sm:px-2.5 py-0.5 sm:py-1 rounded-full tracking-wide">PLANNED</span>
+          <span class="text-[9px] sm:text-[10px] text-stone-400">₹210 Cr</span>
         </div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- ===== TRIBAL HERITAGE ===== -->
-  <section id="heritage" class="py-24 md:py-32 px-6 bg-white">
-    <div class="max-w-7xl mx-auto">
-      <div class="text-center mb-16">
-        <span class="section-label text-[11px] font-semibold text-brand-500 tracking-[0.2em] uppercase" style="opacity:0;transform:translateY(15px)">Tribal Heritage</span>
-        <h2 class="section-label text-3xl md:text-4xl font-semibold tracking-tight mt-4 text-surface-800" style="opacity:0;transform:translateY(15px)">
-          Guardians of the <span class="text-stone-300">Forest</span>
-        </h2>
-        <p class="section-label text-stone-400 font-light max-w-xl mx-auto mt-4 text-[17px]" style="opacity:0;transform:translateY(15px)">
-          Indigenous communities preserving their way of life for millennia — in harmony with the land.
-        </p>
+<!-- Conservation Parallax -->
+<section class="relative min-h-[60vh] sm:min-h-[70vh] flex items-center justify-center overflow-hidden">
+  <div class="parallax-bg absolute inset-0" style="margin-bottom:-15%">
+    <img src="https://picsum.photos/seed/tiger-forest-deep-green/1920/1200.jpg" alt="" class="w-full h-full object-cover">
+    <div class="absolute inset-0 bg-black/45"></div>
+    <div class="absolute inset-0 bg-gradient-to-t from-[#fafafa] via-[#fafafa]/20 to-[#fafafa]/30"></div>
+  </div>
+  <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 py-20 sm:py-28 text-center">
+    <span class="wr text-[10px] sm:text-[11px] font-semibold text-brand-400 tracking-[.18em] uppercase" style="opacity:0;transform:translateY(12px)">Conservation & Prosperity</span>
+    <h2 class="wr text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mt-4 sm:mt-5 leading-[1.1] text-white" style="opacity:0;transform:translateY(20px)">
+      The tiger doesn't need<br><span class="bg-gradient-to-r from-brand-400 to-brand-300 bg-clip-text text-transparent">our sympathy.</span><br class="hidden sm:block">It needs our discipline.
+    </h2>
+    <p class="wr text-white/60 font-light text-sm sm:text-lg max-w-md mx-auto mt-4 sm:mt-5 leading-relaxed px-2" style="opacity:0;transform:translateY(20px)">Zero-poaching infrastructure, community-owned eco-tourism, and scientific habitat management — not slogans, but systems.</p>
+    <div class="wr flex items-center justify-center gap-6 sm:gap-10 md:gap-16 mt-8 sm:mt-10" style="opacity:0;transform:translateY(20px)">
+      <div class="text-center">
+        <div class="text-xl sm:text-2xl md:text-3xl font-bold text-white wc" data-target="120">0</div>
+        <div class="text-[8px] sm:text-[10px] text-white/40 mt-1 tracking-[.1em] uppercase">Anti-Poaching Camps</div>
       </div>
-      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-5">
-        <div class="heritage-card card-lift bg-surface-50 border border-stone-100 rounded-2xl overflow-hidden group" style="opacity:0;transform:translateY(30px)">
-          <div class="h-44 overflow-hidden">
-            <img src="https://picsum.photos/seed/korku-people/400/300.jpg" alt="Korku Tribe" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
-          </div>
-          <div class="p-5">
-            <div class="w-9 h-9 rounded-lg bg-brand-50 flex items-center justify-center mb-3">
-              <span class="iconify text-brand-500 text-sm" data-icon="lucide:users"></span>
-            </div>
-            <h3 class="text-base font-semibold tracking-tight text-surface-800">Korku Tribe</h3>
-            <p class="text-sm text-stone-400 font-light mt-1.5 leading-relaxed">The largest tribal community, known for deep forest connections and a unique dialect.</p>
-          </div>
-        </div>
-        <div class="heritage-card card-lift bg-surface-50 border border-stone-100 rounded-2xl overflow-hidden group" style="opacity:0;transform:translateY(30px)">
-          <div class="h-44 overflow-hidden">
-            <img src="https://picsum.photos/seed/tribal-craft-bamboo/400/300.jpg" alt="Tribal Art" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
-          </div>
-          <div class="p-5">
-            <div class="w-9 h-9 rounded-lg bg-brand-50 flex items-center justify-center mb-3">
-              <span class="iconify text-brand-500 text-sm" data-icon="lucide:palette"></span>
-            </div>
-            <h3 class="text-base font-semibold tracking-tight text-surface-800">Art & Craft</h3>
-            <p class="text-sm text-stone-400 font-light mt-1.5 leading-relaxed">Bamboo craft, wall paintings, and traditional jewelry carrying generations of expression.</p>
-          </div>
-        </div>
-        <div class="heritage-card card-lift bg-surface-50 border border-stone-100 rounded-2xl overflow-hidden group" style="opacity:0;transform:translateY(30px)">
-          <div class="h-44 overflow-hidden">
-            <img src="https://picsum.photos/seed/tribal-drum-fest/400/300.jpg" alt="Traditional Music" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
-          </div>
-          <div class="p-5">
-            <div class="w-9 h-9 rounded-lg bg-brand-50 flex items-center justify-center mb-3">
-              <span class="iconify text-brand-500 text-sm" data-icon="lucide:music"></span>
-            </div>
-            <h3 class="text-base font-semibold tracking-tight text-surface-800">Music & Dance</h3>
-            <p class="text-sm text-stone-400 font-light mt-1.5 leading-relaxed">Rhythmic dhol beats, tandi dances, and folk songs echoing through Satpura valleys.</p>
-          </div>
-        </div>
-        <div class="heritage-card card-lift bg-surface-50 border border-stone-100 rounded-2xl overflow-hidden group" style="opacity:0;transform:translateY(30px)">
-          <div class="h-44 overflow-hidden">
-            <img src="https://picsum.photos/seed/medicinal-plants-forest/400/300.jpg" alt="Forest Wisdom" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
-          </div>
-          <div class="p-5">
-            <div class="w-9 h-9 rounded-lg bg-brand-50 flex items-center justify-center mb-3">
-              <span class="iconify text-brand-500 text-sm" data-icon="lucide:leaf"></span>
-            </div>
-            <h3 class="text-base font-semibold tracking-tight text-surface-800">Forest Wisdom</h3>
-            <p class="text-sm text-stone-400 font-light mt-1.5 leading-relaxed">Ancient knowledge of medicinal plants and sustainable living passed down orally.</p>
-          </div>
-        </div>
+      <div class="w-px h-8 sm:h-10 bg-white/15"></div>
+      <div class="text-center">
+        <div class="text-xl sm:text-2xl md:text-3xl font-bold text-white wc" data-target="500">0</div>
+        <div class="text-[8px] sm:text-[10px] text-white/40 mt-1 tracking-[.1em] uppercase">Tribal Forest Guards</div>
+      </div>
+      <div class="w-px h-8 sm:h-10 bg-white/15"></div>
+      <div class="text-center">
+        <div class="text-xl sm:text-2xl md:text-3xl font-bold text-white wc" data-target="0">0</div>
+        <div class="text-[8px] sm:text-[10px] text-white/40 mt-1 tracking-[.1em] uppercase">Poaching Target</div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- ===== PILGRIMAGE SITES ===== -->
-  <section id="pilgrimage" class="py-24 md:py-32 px-6">
-    <div class="max-w-7xl mx-auto">
-      <div class="flex flex-col md:flex-row md:items-end md:justify-between mb-16 gap-6">
-        <div>
-          <span class="section-label text-[11px] font-semibold text-brand-500 tracking-[0.2em] uppercase" style="opacity:0;transform:translateY(15px)">Sacred Trails</span>
-          <h2 class="section-label text-3xl md:text-4xl font-semibold tracking-tight mt-4 text-surface-800" style="opacity:0;transform:translateY(15px)">
-            Pilgrimage <span class="text-stone-300">Sites</span>
-          </h2>
-        </div>
-        <p class="section-label text-stone-400 font-light max-w-sm" style="opacity:0;transform:translateY(15px)">
-          Ancient temples and forts that have been spiritual waypoints for devotees across centuries.
-        </p>
-      </div>
-      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
-        <div class="pilgrim-card card-lift bg-white border border-stone-100 rounded-2xl p-7 group cursor-pointer relative overflow-hidden" style="opacity:0;transform:translateY(30px)">
-          <span class="absolute top-5 right-6 text-6xl font-black text-stone-50 group-hover:text-brand-50 transition-colors duration-500 select-none">01</span>
-          <div class="w-10 h-10 rounded-xl bg-brand-50 flex items-center justify-center mb-5 group-hover:bg-brand-100 transition-colors">
-            <span class="iconify text-brand-500 text-lg" data-icon="lucide:castle"></span>
-          </div>
-          <h3 class="text-lg font-semibold tracking-tight text-surface-800">Narnala Fort</h3>
-          <p class="text-sm text-stone-400 font-light mt-2.5 leading-relaxed">A 15th-century tri-fort complex — Narnala, Jafarabad & Teliagarh — perched at 3,161 ft with intricate water systems.</p>
-          <div class="flex items-center gap-1.5 mt-5 text-brand-500 text-sm font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-            <span>Explore</span>
-            <span class="iconify text-sm group-hover:translate-x-0.5 transition-transform" data-icon="lucide:arrow-right"></span>
-          </div>
-        </div>
-        <div class="pilgrim-card card-lift bg-white border border-stone-100 rounded-2xl p-7 group cursor-pointer relative overflow-hidden" style="opacity:0;transform:translateY(30px)">
-          <span class="absolute top-5 right-6 text-6xl font-black text-stone-50 group-hover:text-brand-50 transition-colors duration-500 select-none">02</span>
-          <div class="w-10 h-10 rounded-xl bg-brand-50 flex items-center justify-center mb-5 group-hover:bg-brand-100 transition-colors">
-            <span class="iconify text-brand-500 text-lg" data-icon="lucide:landmark"></span>
-          </div>
-          <h3 class="text-lg font-semibold tracking-tight text-surface-800">Gavilgad Fort</h3>
-          <p class="text-sm text-stone-400 font-light mt-2.5 leading-relaxed">Built during the Satavahana era, offering panoramic views of the Satpura valley and Chikhaldara hills.</p>
-          <div class="flex items-center gap-1.5 mt-5 text-brand-500 text-sm font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-            <span>Explore</span>
-            <span class="iconify text-sm group-hover:translate-x-0.5 transition-transform" data-icon="lucide:arrow-right"></span>
-          </div>
-        </div>
-        <div class="pilgrim-card card-lift bg-white border border-stone-100 rounded-2xl p-7 group cursor-pointer relative overflow-hidden" style="opacity:0;transform:translateY(30px)">
-          <span class="absolute top-5 right-6 text-6xl font-black text-stone-50 group-hover:text-brand-50 transition-colors duration-500 select-none">03</span>
-          <div class="w-10 h-10 rounded-xl bg-brand-50 flex items-center justify-center mb-5 group-hover:bg-brand-100 transition-colors">
-            <span class="iconify text-brand-500 text-lg" data-icon="lucide:flame"></span>
-          </div>
-          <h3 class="text-lg font-semibold tracking-tight text-surface-800">Bhavani Temple</h3>
-          <p class="text-sm text-stone-400 font-light mt-2.5 leading-relaxed">An ancient shrine deeply revered by local tribes and pilgrims who trek forest paths to reach it.</p>
-          <div class="flex items-center gap-1.5 mt-5 text-brand-500 text-sm font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-            <span>Explore</span>
-            <span class="iconify text-sm group-hover:translate-x-0.5 transition-transform" data-icon="lucide:arrow-right"></span>
-          </div>
-        </div>
-        <div class="pilgrim-card card-lift bg-white border border-stone-100 rounded-2xl p-7 group cursor-pointer relative overflow-hidden" style="opacity:0;transform:translateY(30px)">
-          <span class="absolute top-5 right-6 text-6xl font-black text-stone-50 group-hover:text-brand-50 transition-colors duration-500 select-none">04</span>
-          <div class="w-10 h-10 rounded-xl bg-brand-50 flex items-center justify-center mb-5 group-hover:bg-brand-100 transition-colors">
-            <span class="iconify text-brand-500 text-lg" data-icon="lucide:mountain-snow"></span>
-          </div>
-          <h3 class="text-lg font-semibold tracking-tight text-surface-800">Makhmai Devi Temple</h3>
-          <p class="text-sm text-stone-400 font-light mt-2.5 leading-relaxed">Perched atop a hillock near Chikhaldara, offering spiritual solace alongside breathtaking views.</p>
-          <div class="flex items-center gap-1.5 mt-5 text-brand-500 text-sm font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-            <span>Explore</span>
-            <span class="iconify text-sm group-hover:translate-x-0.5 transition-transform" data-icon="lucide:arrow-right"></span>
-          </div>
-        </div>
-        <div class="pilgrim-card card-lift bg-white border border-stone-100 rounded-2xl p-7 group cursor-pointer relative overflow-hidden" style="opacity:0;transform:translateY(30px)">
-          <span class="absolute top-5 right-6 text-6xl font-black text-stone-50 group-hover:text-brand-50 transition-colors duration-500 select-none">05</span>
-          <div class="w-10 h-10 rounded-xl bg-brand-50 flex items-center justify-center mb-5 group-hover:bg-brand-100 transition-colors">
-            <span class="iconify text-brand-500 text-lg" data-icon="lucide:trees"></span>
-          </div>
-          <h3 class="text-lg font-semibold tracking-tight text-surface-800">Sacred Devrai Groves</h3>
-          <p class="text-sm text-stone-400 font-light mt-2.5 leading-relaxed">Protected forest patches worshipped as deity abodes — community-led conservation in action.</p>
-          <div class="flex items-center gap-1.5 mt-5 text-brand-500 text-sm font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-            <span>Explore</span>
-            <span class="iconify text-sm group-hover:translate-x-0.5 transition-transform" data-icon="lucide:arrow-right"></span>
-          </div>
-        </div>
-        <div class="pilgrim-card card-lift bg-white border border-stone-100 rounded-2xl p-7 group cursor-pointer relative overflow-hidden" style="opacity:0;transform:translateY(30px)">
-          <span class="absolute top-5 right-6 text-6xl font-black text-stone-50 group-hover:text-brand-50 transition-colors duration-500 select-none">06</span>
-          <div class="w-10 h-10 rounded-xl bg-brand-50 flex items-center justify-center mb-5 group-hover:bg-brand-100 transition-colors">
-            <span class="iconify text-brand-500 text-lg" data-icon="lucide:sunset"></span>
-          </div>
-          <h3 class="text-lg font-semibold tracking-tight text-surface-800">Khandeshwari Devi</h3>
-          <p class="text-sm text-stone-400 font-light mt-2.5 leading-relaxed">Where tribal and Hindu traditions intertwine — especially vibrant during Navratri celebrations.</p>
-          <div class="flex items-center gap-1.5 mt-5 text-brand-500 text-sm font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-            <span>Explore</span>
-            <span class="iconify text-sm group-hover:translate-x-0.5 transition-transform" data-icon="lucide:arrow-right"></span>
-          </div>
-        </div>
-      </div>
+<!-- Six Pillars -->
+<section id="pillars" class="hs-section py-16 sm:py-24 md:py-32 px-4 sm:px-6 bg-white">
+  <div class="max-w-7xl mx-auto">
+    <div class="text-center mb-10 sm:mb-14">
+      <span class="sl text-[10px] sm:text-[11px] font-semibold text-brand-500 tracking-[.18em] uppercase" style="opacity:0;transform:translateY(12px)">The Blueprint</span>
+      <h2 class="sl text-2xl sm:text-3xl md:text-4xl font-semibold tracking-tight mt-3 sm:mt-4 text-surface-800" style="opacity:0;transform:translateY(12px)">Six Pillars of <span class="text-stone-300">Transformation</span></h2>
     </div>
-  </section>
-
-  <!-- ===== WILDLIFE PARALLAX ===== -->
-  <section id="wildlife" class="relative min-h-[75vh] flex items-center justify-center overflow-hidden">
-    <div class="parallax-bg absolute inset-0" style="margin-bottom:-15%">
-      <img src="https://picsum.photos/seed/tiger-reserve-green/1920/1200.jpg" alt="Wildlife" class="w-full h-full object-cover">
-      <div class="absolute inset-0 bg-black/40"></div>
-      <div class="absolute inset-0 bg-gradient-to-t from-white via-white/20 to-white/30"></div>
-    </div>
-    <div class="relative z-10 max-w-7xl mx-auto px-6 py-28 text-center">
-      <span class="wildlife-reveal text-[11px] font-semibold text-brand-400 tracking-[0.2em] uppercase" style="opacity:0;transform:translateY(15px)">Melghat Tiger Reserve</span>
-      <h2 class="wildlife-reveal text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight mt-5 leading-[1.1] text-white" style="opacity:0;transform:translateY(25px)">
-        Where the wild<br>
-        <span class="bg-gradient-to-r from-brand-400 to-brand-300 bg-clip-text text-transparent">roams free</span>
-      </h2>
-      <p class="wildlife-reveal text-white/70 font-light text-lg max-w-xl mx-auto mt-5 leading-relaxed" style="opacity:0;transform:translateY(25px)">
-        One of India's first Project Tiger reserves — home to Royal Bengal Tigers, leopards, Indian gaur, and over 250 bird species.
-      </p>
-      <div class="wildlife-reveal flex items-center justify-center gap-10 md:gap-16 mt-10" style="opacity:0;transform:translateY(25px)">
-        <div class="text-center">
-          <div class="text-2xl md:text-3xl font-bold text-white w-counter" data-target="250">0</div>
-          <div class="text-[10px] text-white/50 mt-1 tracking-[0.15em] uppercase">Bird Species</div>
-        </div>
-        <div class="w-px h-10 bg-white/15"></div>
-        <div class="text-center">
-          <div class="text-2xl md:text-3xl font-bold text-white w-counter" data-target="1000">0</div>
-          <div class="text-[10px] text-white/50 mt-1 tracking-[0.15em] uppercase">Plant Species</div>
-        </div>
-        <div class="w-px h-10 bg-white/15"></div>
-        <div class="text-center">
-          <div class="text-2xl md:text-3xl font-bold text-white w-counter" data-target="30">0</div>
-          <div class="text-[10px] text-white/50 mt-1 tracking-[0.15em] uppercase">Mammal Species</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== EXPERIENCES — HORIZONTAL SCROLL ===== -->
-  <section id="experiences" class="horizontal-section relative bg-white">
-    <div class="max-w-7xl mx-auto px-6 pt-24 pb-6">
-      <span class="section-label text-[11px] font-semibold text-brand-500 tracking-[0.2em] uppercase" style="opacity:0;transform:translateY(15px)">Curated For You</span>
-      <h2 class="section-label text-3xl md:text-4xl font-semibold tracking-tight mt-4 text-surface-800" style="opacity:0;transform:translateY(15px)">
-        Unforgettable <span class="text-stone-300">Experiences</span>
-      </h2>
-    </div>
-    <div class="horizontal-container flex gap-5 px-6 pb-20 pt-6">
-      <div class="experience-card card-lift bg-surface-50 border border-stone-100 rounded-2xl overflow-hidden group flex-shrink-0">
-        <div class="h-56 overflow-hidden relative">
-          <img src="https://picsum.photos/seed/jeep-safari-green/500/400.jpg" alt="Wildlife Safari" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
-          <div class="absolute top-3.5 left-3.5 bg-white/90 backdrop-blur-sm rounded-full px-3 py-1 text-[10px] font-semibold text-brand-600 tracking-wider uppercase">Popular</div>
-        </div>
-        <div class="p-5 flex flex-col h-[calc(100%-224px)]">
-          <div class="flex items-center gap-1.5 text-stone-400 text-xs mb-2.5">
-            <span class="iconify text-xs" data-icon="lucide:clock"></span>
-            <span>3–4 hrs · Dawn & Dusk</span>
+    <!-- Mobile: vertical stack / Desktop: horizontal scroll -->
+    <div class="hs-wrap">
+      <div class="hs-container flex flex-col md:flex-row gap-3 sm:gap-5">
+        <div class="pcard cl bg-surface-50 border border-stone-100 rounded-xl sm:rounded-2xl overflow-hidden group flex-shrink-0 w-full md:w-auto">
+          <div class="h-40 sm:h-56 overflow-hidden relative">
+            <img src="https://picsum.photos/seed/road-construction-hill/500/400.jpg" alt="" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+            <div class="absolute top-2.5 left-2.5 sm:top-3.5 sm:left-3.5 bg-white/90 backdrop-blur-sm rounded-full px-2.5 sm:px-3 py-0.5 sm:py-1 text-[9px] sm:text-[10px] font-semibold text-brand-600 tracking-wider uppercase">Pillar 1</div>
           </div>
-          <h3 class="text-lg font-semibold tracking-tight text-surface-800">Wildlife Safari</h3>
-          <p class="text-sm text-stone-400 font-light mt-1.5 leading-relaxed flex-1">Jeep safaris through core zones with experienced naturalists. Spot tigers, gaurs, and migratory birds.</p>
-          <div class="flex items-center justify-between mt-4 pt-3.5 border-t border-stone-100">
-            <span class="text-sm font-semibold text-surface-800">₹1,500 <span class="text-stone-400 font-normal text-xs">/person</span></span>
-            <span class="iconify text-stone-300 group-hover:text-brand-500 group-hover:translate-x-0.5 transition-all" data-icon="lucide:arrow-right"></span>
-          </div>
-        </div>
-      </div>
-      <div class="experience-card card-lift bg-surface-50 border border-stone-100 rounded-2xl overflow-hidden group flex-shrink-0">
-        <div class="h-56 overflow-hidden relative">
-          <img src="https://picsum.photos/seed/hill-fort-trek/500/400.jpg" alt="Fort Trek" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
-        </div>
-        <div class="p-5 flex flex-col h-[calc(100%-224px)]">
-          <div class="flex items-center gap-1.5 text-stone-400 text-xs mb-2.5">
-            <span class="iconify text-xs" data-icon="lucide:clock"></span>
-            <span>Full Day · Moderate</span>
-          </div>
-          <h3 class="text-lg font-semibold tracking-tight text-surface-800">Fort Trek</h3>
-          <p class="text-sm text-stone-400 font-light mt-1.5 leading-relaxed flex-1">Trek through forest trails to Narnala or Gavilgad. Discover hidden gates, water cisterns, and medieval stories.</p>
-          <div class="flex items-center justify-between mt-4 pt-3.5 border-t border-stone-100">
-            <span class="text-sm font-semibold text-surface-800">₹800 <span class="text-stone-400 font-normal text-xs">/person</span></span>
-            <span class="iconify text-stone-300 group-hover:text-brand-500 group-hover:translate-x-0.5 transition-all" data-icon="lucide:arrow-right"></span>
-          </div>
-        </div>
-      </div>
-      <div class="experience-card card-lift bg-surface-50 border border-stone-100 rounded-2xl overflow-hidden group flex-shrink-0">
-        <div class="h-56 overflow-hidden relative">
-          <img src="https://picsum.photos/seed/village-walk-rural/500/400.jpg" alt="Tribal Village Walk" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
-          <div class="absolute top-3.5 left-3.5 bg-white/90 backdrop-blur-sm rounded-full px-3 py-1 text-[10px] font-semibold text-emerald-600 tracking-wider uppercase">Authentic</div>
-        </div>
-        <div class="p-5 flex flex-col h-[calc(100%-224px)]">
-          <div class="flex items-center gap-1.5 text-stone-400 text-xs mb-2.5">
-            <span class="iconify text-xs" data-icon="lucide:clock"></span>
-            <span>2–3 hrs · Easy</span>
-          </div>
-          <h3 class="text-lg font-semibold tracking-tight text-surface-800">Tribal Village Walk</h3>
-          <p class="text-sm text-stone-400 font-light mt-1.5 leading-relaxed flex-1">Walk through Korku hamlets with a tribal guide. Experience homes, meals, bamboo crafts, and oral traditions.</p>
-          <div class="flex items-center justify-between mt-4 pt-3.5 border-t border-stone-100">
-            <span class="text-sm font-semibold text-surface-800">₹600 <span class="text-stone-400 font-normal text-xs">/person</span></span>
-            <span class="iconify text-stone-300 group-hover:text-brand-500 group-hover:translate-x-0.5 transition-all" data-icon="lucide:arrow-right"></span>
-          </div>
-        </div>
-      </div>
-      <div class="experience-card card-lift bg-surface-50 border border-stone-100 rounded-2xl overflow-hidden group flex-shrink-0">
-        <div class="h-56 overflow-hidden relative">
-          <img src="https://picsum.photos/seed/temple-trail-ancient/500/400.jpg" alt="Temple Trail" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
-        </div>
-        <div class="p-5 flex flex-col h-[calc(100%-224px)]">
-          <div class="flex items-center gap-1.5 text-stone-400 text-xs mb-2.5">
-            <span class="iconify text-xs" data-icon="lucide:clock"></span>
-            <span>Half Day · Easy–Mod</span>
-          </div>
-          <h3 class="text-lg font-semibold tracking-tight text-surface-800">Temple Trail</h3>
-          <p class="text-sm text-stone-400 font-light mt-1.5 leading-relaxed flex-1">A guided pilgrimage circuit — Bhavani Temple, Makhmai Devi, and sacred Devrai groves with mythological storytelling.</p>
-          <div class="flex items-center justify-between mt-4 pt-3.5 border-t border-stone-100">
-            <span class="text-sm font-semibold text-surface-800">₹500 <span class="text-stone-400 font-normal text-xs">/person</span></span>
-            <span class="iconify text-stone-300 group-hover:text-brand-500 group-hover:translate-x-0.5 transition-all" data-icon="lucide:arrow-right"></span>
-          </div>
-        </div>
-      </div>
-      <div class="experience-card card-lift bg-surface-50 border border-stone-100 rounded-2xl overflow-hidden group flex-shrink-0">
-        <div class="h-56 overflow-hidden relative">
-          <img src="https://picsum.photos/seed/forest-camp-stars/500/400.jpg" alt="Forest Camping" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
-          <div class="absolute top-3.5 left-3.5 bg-white/90 backdrop-blur-sm rounded-full px-3 py-1 text-[10px] font-semibold text-blue-600 tracking-wider uppercase">Night</div>
-        </div>
-        <div class="p-5 flex flex-col h-[calc(100%-224px)]">
-          <div class="flex items-center gap-1.5 text-stone-400 text-xs mb-2.5">
-            <span class="iconify text-xs" data-icon="lucide:clock"></span>
-            <span>Overnight · Adventure</span>
-          </div>
-          <h3 class="text-lg font-semibold tracking-tight text-surface-800">Forest Camping</h3>
-          <p class="text-sm text-stone-400 font-light mt-1.5 leading-relaxed flex-1">Sleep under stars. Night walks, campfire stories with tribal elders, and dawn birding sessions.</p>
-          <div class="flex items-center justify-between mt-4 pt-3.5 border-t border-stone-100">
-            <span class="text-sm font-semibold text-surface-800">₹2,000 <span class="text-stone-400 font-normal text-xs">/person</span></span>
-            <span class="iconify text-stone-300 group-hover:text-brand-500 group-hover:translate-x-0.5 transition-all" data-icon="lucide:arrow-right"></span>
-          </div>
-        </div>
-      </div>
-      <div class="experience-card card-lift bg-surface-50 border border-stone-100 rounded-2xl overflow-hidden group flex-shrink-0">
-        <div class="h-56 overflow-hidden relative">
-          <img src="https://picsum.photos/seed/birding-binoculars-morning/500/400.jpg" alt="Bird Watching" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
-        </div>
-        <div class="p-5 flex flex-col h-[calc(100%-224px)]">
-          <div class="flex items-center gap-1.5 text-stone-400 text-xs mb-2.5">
-            <span class="iconify text-xs" data-icon="lucide:clock"></span>
-            <span>2 hrs · Morning</span>
-          </div>
-          <h3 class="text-lg font-semibold tracking-tight text-surface-800">Bird Watching</h3>
-          <p class="text-sm text-stone-400 font-light mt-1.5 leading-relaxed flex-1">Spot hornbills, forest owlets, and raptors with expert ornithologists in a Central India birding hotspot.</p>
-          <div class="flex items-center justify-between mt-4 pt-3.5 border-t border-stone-100">
-            <span class="text-sm font-semibold text-surface-800">₹700 <span class="text-stone-400 font-normal text-xs">/person</span></span>
-            <span class="iconify text-stone-300 group-hover:text-brand-500 group-hover:translate-x-0.5 transition-all" data-icon="lucide:arrow-right"></span>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="text-center pb-6">
-      <span class="text-[10px] text-stone-300 tracking-[0.2em] flex items-center justify-center gap-2">
-        <span class="iconify" data-icon="lucide:move-horizontal"></span>
-        SCROLL TO EXPLORE
-      </span>
-    </div>
-  </section>
-
-  <!-- ===== VIDEO SECTION ===== -->
-  <section id="video" class="py-24 md:py-32 px-6">
-    <div class="max-w-7xl mx-auto">
-      <div class="grid lg:grid-cols-5 gap-10 lg:gap-16 items-center">
-        <div class="lg:col-span-2">
-          <span class="video-reveal text-[11px] font-semibold text-brand-500 tracking-[0.2em] uppercase" style="opacity:0;transform:translateY(15px)">The Film</span>
-          <h2 class="video-reveal text-3xl md:text-4xl font-semibold tracking-tight mt-4 leading-tight text-surface-800" style="opacity:0;transform:translateY(15px)">
-            Witness Melghat <span class="text-stone-300">unfold</span>
-          </h2>
-          <p class="video-reveal text-stone-400 font-light mt-4 leading-relaxed" style="opacity:0;transform:translateY(15px)">
-            A cinematic journey through tribal heartlands and sacred trails — capturing stories that guidebooks can't tell.
-          </p>
-          <div class="video-reveal flex flex-col gap-3.5 mt-8" style="opacity:0;transform:translateY(15px)">
-            <div class="flex items-center gap-3">
-              <div class="w-8 h-8 rounded-lg bg-surface-50 border border-stone-100 flex items-center justify-center flex-shrink-0">
-                <span class="iconify text-brand-500 text-sm" data-icon="lucide:film"></span>
-              </div>
-              <span class="text-sm text-stone-500">Documentary-style tribal storytelling</span>
-            </div>
-            <div class="flex items-center gap-3">
-              <div class="w-8 h-8 rounded-lg bg-surface-50 border border-stone-100 flex items-center justify-center flex-shrink-0">
-                <span class="iconify text-brand-500 text-sm" data-icon="lucide:camera"></span>
-              </div>
-              <span class="text-sm text-stone-500">Aerial views of Satpura landscapes</span>
-            </div>
-            <div class="flex items-center gap-3">
-              <div class="w-8 h-8 rounded-lg bg-surface-50 border border-stone-100 flex items-center justify-center flex-shrink-0">
-                <span class="iconify text-brand-500 text-sm" data-icon="lucide:heart"></span>
-              </div>
-              <span class="text-sm text-stone-500">Real encounters with local communities</span>
+          <div class="p-4 sm:p-5 flex flex-col">
+            <div class="flex items-center gap-1.5 text-stone-400 text-[10px] sm:text-xs mb-1.5 sm:mb-2.5"><span class="iconify text-[10px] sm:text-xs" data-icon="lucide:route"></span><span>Infrastructure & Connectivity</span></div>
+            <h3 class="text-[15px] sm:text-lg font-semibold tracking-tight text-surface-800">Roads That Connect</h3>
+            <p class="text-[11px] sm:text-sm text-stone-400 font-light mt-1 sm:mt-1.5 leading-relaxed flex-1">280 km all-weather roads, bridges, mobile towers in every pocket, broadband to every panchayat.</p>
+            <div class="flex items-center justify-between mt-3 sm:mt-4 pt-3 sm:pt-3.5 border-t border-stone-100">
+              <span class="text-sm font-semibold text-surface-800">₹680 Cr</span>
+              <span class="iconify text-stone-300 group-hover:text-brand-500 group-hover:translate-x-0.5 transition-all" data-icon="lucide:arrow-right"></span>
             </div>
           </div>
         </div>
-        <div class="lg:col-span-3 video-reveal" style="opacity:0;transform:scale(0.97)">
-          <div class="relative rounded-2xl overflow-hidden border border-stone-200 shadow-xl shadow-stone-900/5 aspect-video">
-            <iframe 
-              src="https://www.youtube.com/embed/9Qyew08Nbnk?rel=0&modestbranding=1&color=white" 
-              title="Samarth Melghat"
-              frameborder="0" 
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-              allowfullscreen
-              class="w-full h-full"
-              loading="lazy"
-            ></iframe>
+        <div class="pcard cl bg-surface-50 border border-stone-100 rounded-xl sm:rounded-2xl overflow-hidden group flex-shrink-0 w-full md:w-auto">
+          <div class="h-40 sm:h-56 overflow-hidden relative">
+            <img src="https://picsum.photos/seed/eco-tourism-lodge/500/400.jpg" alt="" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+            <div class="absolute top-2.5 left-2.5 sm:top-3.5 sm:left-3.5 bg-white/90 backdrop-blur-sm rounded-full px-2.5 sm:px-3 py-0.5 sm:py-1 text-[9px] sm:text-[10px] font-semibold text-brand-600 tracking-wider uppercase">Pillar 2</div>
           </div>
-          <p class="text-[11px] text-stone-300 mt-3 text-center">Samarth Melghat — Tribal Heritage & Pilgrimage Tourism</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== HOW TO REACH ===== -->
-  <section class="py-24 md:py-32 px-6 bg-white">
-    <div class="max-w-7xl mx-auto">
-      <div class="text-center mb-14">
-        <span class="section-label text-[11px] font-semibold text-brand-500 tracking-[0.2em] uppercase" style="opacity:0;transform:translateY(15px)">Getting There</span>
-        <h2 class="section-label text-3xl md:text-4xl font-semibold tracking-tight mt-4 text-surface-800" style="opacity:0;transform:translateY(15px)">
-          How to <span class="text-stone-300">Reach</span>
-        </h2>
-      </div>
-      <div class="grid md:grid-cols-3 gap-5">
-        <div class="reach-card card-lift bg-surface-50 border border-stone-100 rounded-2xl p-8 text-center" style="opacity:0;transform:translateY(25px)">
-          <div class="w-12 h-12 rounded-2xl bg-brand-50 flex items-center justify-center mx-auto mb-5">
-            <span class="iconify text-brand-500 text-xl" data-icon="lucide:plane"></span>
-          </div>
-          <h3 class="text-base font-semibold text-surface-800">By Air</h3>
-          <p class="text-sm text-stone-400 font-light mt-2.5 leading-relaxed">Nearest: Amravati (100 km) or Nagpur (230 km). Taxis & buses available from both.</p>
-        </div>
-        <div class="reach-card card-lift bg-surface-50 border border-stone-100 rounded-2xl p-8 text-center" style="opacity:0;transform:translateY(25px)">
-          <div class="w-12 h-12 rounded-2xl bg-brand-50 flex items-center justify-center mx-auto mb-5">
-            <span class="iconify text-brand-500 text-xl" data-icon="lucide:train-front"></span>
-          </div>
-          <h3 class="text-base font-semibold text-surface-800">By Train</h3>
-          <p class="text-sm text-stone-400 font-light mt-2.5 leading-relaxed">Amravati station (90 km) is well-connected. MSRTC buses run regularly to Chikhaldara.</p>
-        </div>
-        <div class="reach-card card-lift bg-surface-50 border border-stone-100 rounded-2xl p-8 text-center" style="opacity:0;transform:translateY(25px)">
-          <div class="w-12 h-12 rounded-2xl bg-brand-50 flex items-center justify-center mx-auto mb-5">
-            <span class="iconify text-brand-500 text-xl" data-icon="lucide:car"></span>
-          </div>
-          <h3 class="text-base font-semibold text-surface-800">By Road</h3>
-          <p class="text-sm text-stone-400 font-light mt-2.5 leading-relaxed">Chikhaldara is 76 km from Amravati via Dharni. Scenic ghat roads through dense forest.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== CONNECT / CTA ===== -->
-  <section id="connect" class="py-24 md:py-32 px-6 relative overflow-hidden">
-    <div class="absolute inset-0 bg-gradient-to-b from-brand-50/50 to-transparent"></div>
-    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-brand-500/[0.04] rounded-full blur-[100px]"></div>
-    <div class="relative max-w-4xl mx-auto text-center">
-      <span class="cta-reveal text-[11px] font-semibold text-brand-500 tracking-[0.2em] uppercase" style="opacity:0;transform:translateY(15px)">Connect With Us</span>
-      <h2 class="cta-reveal text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mt-5 leading-[1.1] text-surface-800" style="opacity:0;transform:translateY(25px)">
-        Your journey into<br>
-        <span class="bg-gradient-to-r from-brand-500 to-brand-600 bg-clip-text text-transparent">Melghat begins here</span>
-      </h2>
-      <p class="cta-reveal text-stone-400 font-light text-lg max-w-md mx-auto mt-5 leading-relaxed" style="opacity:0;transform:translateY(25px)">
-        Whether a pilgrim, wildlife enthusiast, or cultural explorer — we'll craft your perfect trail.
-      </p>
-      <div class="cta-reveal flex flex-col sm:flex-row items-center justify-center gap-3 mt-9" style="opacity:0;transform:translateY(25px)">
-        <a href="https://untitled-chat-wheat.vercel.app/#connect" target="_blank" class="group flex items-center gap-2 bg-surface-800 hover:bg-surface-900 text-white text-sm font-semibold px-8 py-4 rounded-xl transition-all duration-300 shadow-lg shadow-stone-900/10 hover:shadow-xl hover:shadow-stone-900/15">
-          <span class="iconify text-sm" data-icon="lucide:message-circle"></span>
-          Get In Touch
-          <span class="iconify text-sm group-hover:translate-x-0.5 transition-transform" data-icon="lucide:arrow-right"></span>
-        </a>
-        <a href="tel:+919876543210" class="flex items-center gap-2 bg-white hover:bg-stone-50 border border-stone-200 hover:border-stone-300 text-surface-800 text-sm font-medium px-8 py-4 rounded-xl transition-all duration-300 shadow-sm">
-          <span class="iconify text-sm" data-icon="lucide:phone"></span>
-          Call Now
-        </a>
-      </div>
-      <div class="cta-reveal flex items-center justify-center gap-3 mt-10" style="opacity:0;transform:translateY(15px)">
-        <a href="#" class="w-9 h-9 rounded-lg bg-white border border-stone-200 flex items-center justify-center text-stone-400 hover:text-surface-800 hover:border-stone-300 hover:shadow-sm transition-all">
-          <span class="iconify text-sm" data-icon="lucide:instagram"></span>
-        </a>
-        <a href="#" class="w-9 h-9 rounded-lg bg-white border border-stone-200 flex items-center justify-center text-stone-400 hover:text-surface-800 hover:border-stone-300 hover:shadow-sm transition-all">
-          <span class="iconify text-sm" data-icon="lucide:facebook"></span>
-        </a>
-        <a href="#" class="w-9 h-9 rounded-lg bg-white border border-stone-200 flex items-center justify-center text-stone-400 hover:text-surface-800 hover:border-stone-300 hover:shadow-sm transition-all">
-          <span class="iconify text-sm" data-icon="lucide:youtube"></span>
-        </a>
-        <a href="#" class="w-9 h-9 rounded-lg bg-white border border-stone-200 flex items-center justify-center text-stone-400 hover:text-surface-800 hover:border-stone-300 hover:shadow-sm transition-all">
-          <span class="iconify text-sm" data-icon="lucide:twitter"></span>
-        </a>
-        <a href="#" class="w-9 h-9 rounded-lg bg-white border border-stone-200 flex items-center justify-center text-stone-400 hover:text-surface-800 hover:border-stone-300 hover:shadow-sm transition-all">
-          <span class="iconify text-sm" data-icon="lucide:mail"></span>
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== FOOTER ===== -->
-  <footer class="border-t border-stone-100 bg-white">
-    <div class="max-w-7xl mx-auto px-6 py-12">
-      <div class="grid md:grid-cols-4 gap-10">
-        <div class="md:col-span-2">
-          <div class="flex items-center gap-2.5 mb-4">
-            <div class="w-7 h-7 rounded-lg bg-gradient-to-br from-brand-400 to-brand-600 flex items-center justify-center shadow-sm shadow-brand-500/20">
-              <span class="iconify text-white text-xs" data-icon="lucide:mountain"></span>
+          <div class="p-4 sm:p-5 flex flex-col">
+            <div class="flex items-center gap-1.5 text-stone-400 text-[10px] sm:text-xs mb-1.5 sm:mb-2.5"><span class="iconify text-[10px] sm:text-xs" data-icon="lucide:tent"></span><span>Tribal-Owned Eco-Tourism</span></div>
+            <h3 class="text-[15px] sm:text-lg font-semibold tracking-tight text-surface-800">Tourism That Serves Locals</h3>
+            <p class="text-[11px] sm:text-sm text-stone-400 font-light mt-1 sm:mt-1.5 leading-relaxed flex-1">Tribal-run homestays, guided experiences, craft markets — 80% revenue stays in the community.</p>
+            <div class="flex items-center justify-between mt-3 sm:mt-4 pt-3 sm:pt-3.5 border-t border-stone-100">
+              <span class="text-sm font-semibold text-surface-800">₹450 Cr</span>
+              <span class="iconify text-stone-300 group-hover:text-brand-500 group-hover:translate-x-0.5 transition-all" data-icon="lucide:arrow-right"></span>
             </div>
-            <span class="font-semibold text-sm tracking-tight text-surface-800">SAMARTH MELGHAT</span>
-          </div>
-          <p class="text-sm text-stone-400 font-light leading-relaxed max-w-sm">
-            Promoting sustainable tribal heritage & pilgrimage tourism in the Melghat region of Maharashtra.
-          </p>
-          <div class="flex items-center gap-2 mt-4 text-xs text-stone-300">
-            <span class="iconify" data-icon="lucide:map-pin"></span>
-            <span>Chikhaldara, Amravati, Maharashtra 444807</span>
           </div>
         </div>
-        <div>
-          <h4 class="text-[10px] font-semibold tracking-[0.15em] uppercase text-stone-400 mb-4">Explore</h4>
-          <ul class="space-y-2.5">
-            <li><a href="#heritage" class="text-sm text-stone-400 hover:text-surface-800 transition-colors">Tribal Heritage</a></li>
-            <li><a href="#pilgrimage" class="text-sm text-stone-400 hover:text-surface-800 transition-colors">Pilgrimage Sites</a></li>
-            <li><a href="#wildlife" class="text-sm text-stone-400 hover:text-surface-800 transition-colors">Wildlife</a></li>
-            <li><a href="#experiences" class="text-sm text-stone-400 hover:text-surface-800 transition-colors">Experiences</a></li>
-          </ul>
+        <div class="pcard cl bg-surface-50 border border-stone-100 rounded-xl sm:rounded-2xl overflow-hidden group flex-shrink-0 w-full md:w-auto">
+          <div class="h-40 sm:h-56 overflow-hidden relative">
+            <img src="https://picsum.photos/seed/forest-produce-processing/500/400.jpg" alt="" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+            <div class="absolute top-2.5 left-2.5 sm:top-3.5 sm:left-3.5 bg-white/90 backdrop-blur-sm rounded-full px-2.5 sm:px-3 py-0.5 sm:py-1 text-[9px] sm:text-[10px] font-semibold text-emerald-600 tracking-wider uppercase">Pillar 3</div>
+          </div>
+          <div class="p-4 sm:p-5 flex flex-col">
+            <div class="flex items-center gap-1.5 text-stone-400 text-[10px] sm:text-xs mb-1.5 sm:mb-2.5"><span class="iconify text-[10px] sm:text-xs" data-icon="lucide:sprout"></span><span>Forest-Based Economy</span></div>
+            <h3 class="text-[15px] sm:text-lg font-semibold tracking-tight text-surface-800">From Forest to Fortune</h3>
+            <p class="text-[11px] sm:text-sm text-stone-400 font-light mt-1 sm:mt-1.5 leading-relaxed flex-1">Mahua, honey, bamboo, tendu — processed, branded, sold nationally.</p>
+            <div class="flex items-center justify-between mt-3 sm:mt-4 pt-3 sm:pt-3.5 border-t border-stone-100">
+              <span class="text-sm font-semibold text-surface-800">₹320 Cr</span>
+              <span class="iconify text-stone-300 group-hover:text-brand-500 group-hover:translate-x-0.5 transition-all" data-icon="lucide:arrow-right"></span>
+            </div>
+          </div>
         </div>
-        <div>
-          <h4 class="text-[10px] font-semibold tracking-[0.15em] uppercase text-stone-400 mb-4">Information</h4>
-          <ul class="space-y-2.5">
-            <li><a href="#" class="text-sm text-stone-400 hover:text-surface-800 transition-colors">About Samarth</a></li>
-            <li><a href="#" class="text-sm text-stone-400 hover:text-surface-800 transition-colors">Entry Permits</a></li>
-            <li><a href="#" class="text-sm text-stone-400 hover:text-surface-800 transition-colors">Best Season</a></li>
-            <li><a href="#connect" class="text-sm text-stone-400 hover:text-surface-800 transition-colors">Contact</a></li>
-          </ul>
+        <div class="pcard cl bg-surface-50 border border-stone-100 rounded-xl sm:rounded-2xl overflow-hidden group flex-shrink-0 w-full md:w-auto">
+          <div class="h-40 sm:h-56 overflow-hidden relative">
+            <img src="https://picsum.photos/seed/digital-village-india/500/400.jpg" alt="" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+            <div class="absolute top-2.5 left-2.5 sm:top-3.5 sm:left-3.5 bg-white/90 backdrop-blur-sm rounded-full px-2.5 sm:px-3 py-0.5 sm:py-1 text-[9px] sm:text-[10px] font-semibold text-blue-600 tracking-wider uppercase">Pillar 4</div>
+          </div>
+          <div class="p-4 sm:p-5 flex flex-col">
+            <div class="flex items-center gap-1.5 text-stone-400 text-[10px] sm:text-xs mb-1.5 sm:mb-2.5"><span class="iconify text-[10px] sm:text-xs" data-icon="lucide:wifi"></span><span>Digital Melghat</span></div>
+            <h3 class="text-[15px] sm:text-lg font-semibold tracking-tight text-surface-800">Bridging the Digital Divide</h3>
+            <p class="text-[11px] sm:text-sm text-stone-400 font-light mt-1 sm:mt-1.5 leading-relaxed flex-1">e-governance kiosks, digital literacy for 15,000 youth, telemedicine, online marketplace.</p>
+            <div class="flex items-center justify-between mt-3 sm:mt-4 pt-3 sm:pt-3.5 border-t border-stone-100">
+              <span class="text-sm font-semibold text-surface-800">₹180 Cr</span>
+              <span class="iconify text-stone-300 group-hover:text-brand-500 group-hover:translate-x-0.5 transition-all" data-icon="lucide:arrow-right"></span>
+            </div>
+          </div>
         </div>
-      </div>
-      <div class="border-t border-stone-100 mt-10 pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
-        <p class="text-[11px] text-stone-300">© 2025 Samarth Melghat. All rights reserved.</p>
-        <p class="text-[11px] text-stone-300">Tribal Heritage & Pilgrimage Tourism Initiative</p>
+        <div class="pcard cl bg-surface-50 border border-stone-100 rounded-xl sm:rounded-2xl overflow-hidden group flex-shrink-0 w-full md:w-auto">
+          <div class="h-40 sm:h-56 overflow-hidden relative">
+            <img src="https://picsum.photos/seed/water-supply-village/500/400.jpg" alt="" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+            <div class="absolute top-2.5 left-2.5 sm:top-3.5 sm:left-3.5 bg-white/90 backdrop-blur-sm rounded-full px-2.5 sm:px-3 py-0.5 sm:py-1 text-[9px] sm:text-[10px] font-semibold text-cyan-600 tracking-wider uppercase">Pillar 5</div>
+          </div>
+          <div class="p-4 sm:p-5 flex flex-col">
+            <div class="flex items-center gap-1.5 text-stone-400 text-[10px] sm:text-xs mb-1.5 sm:mb-2.5"><span class="iconify text-[10px] sm:text-xs" data-icon="lucide:droplets"></span><span>Water & Sanitation</span></div>
+            <h3 class="text-[15px] sm:text-lg font-semibold tracking-tight text-surface-800">Every Drop Counts</h3>
+            <p class="text-[11px] sm:text-sm text-stone-400 font-light mt-1 sm:mt-1.5 leading-relaxed flex-1">Piped water to every home, check dams, watershed management — ending water scarcity forever.</p>
+            <div class="flex items-center justify-between mt-3 sm:mt-4 pt-3 sm:pt-3.5 border-t border-stone-100">
+              <span class="text-sm font-semibold text-surface-800">₹520 Cr</span>
+              <span class="iconify text-stone-300 group-hover:text-brand-500 group-hover:translate-x-0.5 transition-all" data-icon="lucide:arrow-right"></span>
+            </div>
+          </div>
+        </div>
+        <div class="pcard cl bg-surface-50 border border-stone-100 rounded-xl sm:rounded-2xl overflow-hidden group flex-shrink-0 w-full md:w-auto">
+          <div class="h-40 sm:h-56 overflow-hidden relative">
+            <img src="https://picsum.photos/seed/skill-training-youth/500/400.jpg" alt="" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+            <div class="absolute top-2.5 left-2.5 sm:top-3.5 sm:left-3.5 bg-white/90 backdrop-blur-sm rounded-full px-2.5 sm:px-3 py-0.5 sm:py-1 text-[9px] sm:text-[10px] font-semibold text-purple-600 tracking-wider uppercase">Pillar 6</div>
+          </div>
+          <div class="p-4 sm:p-5 flex flex-col">
+            <div class="flex items-center gap-1.5 text-stone-400 text-[10px] sm:text-xs mb-1.5 sm:mb-2.5"><span class="iconify text-[10px] sm:text-xs" data-icon="lucide:zap"></span><span>Skill & Employment</span></div>
+            <h3 class="text-[15px] sm:text-lg font-semibold tracking-tight text-surface-800">Skills, Not Sympathy</h3>
+            <p class="text-[11px] sm:text-sm text-stone-400 font-light mt-1 sm:mt-1.5 leading-relaxed flex-1">ITI centres, hospitality training, forest ranger programs — 25,000 jobs in 5 years.</p>
+            <div class="flex items-center justify-between mt-3 sm:mt-4 pt-3 sm:pt-3.5 border-t border-stone-100">
+              <span class="text-sm font-semibold text-surface-800">₹280 Cr</span>
+              <span class="iconify text-stone-300 group-hover:text-brand-500 group-hover:translate-x-0.5 transition-all" data-icon="lucide:arrow-right"></span>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
-  </footer>
+    <div class="hidden md:block text-center pb-4">
+      <span class="text-[10px] text-stone-300 tracking-[.2em] flex items-center justify-center gap-2"><span class="iconify" data-icon="lucide:move-horizontal"></span>SCROLL THE BLUEPRINT</span>
+    </div>
+  </div>
+</section>
 
-  <!-- ===== SCRIPTS ===== -->
-  <script>
-    const menuBtn = document.getElementById('menuBtn');
-    const mobileMenu = document.getElementById('mobileMenu');
-    menuBtn.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
-    document.querySelectorAll('.mobile-link').forEach(l => l.addEventListener('click', () => mobileMenu.classList.add('hidden')));
+<!-- Video -->
+<section id="story" class="py-16 sm:py-24 md:py-32 px-4 sm:px-6">
+  <div class="max-w-7xl mx-auto">
+    <div class="grid lg:grid-cols-5 gap-8 sm:gap-10 lg:gap-16 items-center">
+      <div class="lg:col-span-2 order-2 lg:order-1">
+        <span class="vr text-[10px] sm:text-[11px] font-semibold text-brand-500 tracking-[.18em] uppercase" style="opacity:0;transform:translateY(12px)">The Story</span>
+        <h2 class="vr text-2xl sm:text-3xl md:text-4xl font-semibold tracking-tight mt-3 sm:mt-4 leading-tight text-surface-800" style="opacity:0;transform:translateY(12px)">See What We've <span class="text-stone-300">Seen</span></h2>
+        <p class="vr text-stone-400 font-light mt-3 sm:mt-4 leading-relaxed text-sm sm:text-base" style="opacity:0;transform:translateY(12px)">This isn't a promotional film. It's a documentation of reality — the beauty, the neglect, and the unwavering resolve to change both.</p>
+        <div class="vr flex flex-col gap-3 sm:gap-3.5 mt-6 sm:mt-8" style="opacity:0;transform:translateY(12px)">
+          <div class="flex items-center gap-2.5">
+            <div class="w-7 h-7 sm:w-8 sm:h-8 rounded-md sm:rounded-lg bg-surface-50 border border-stone-100 flex items-center justify-center flex-shrink-0"><span class="iconify text-brand-500 text-xs sm:text-sm" data-icon="lucide:eye"></span></div>
+            <span class="text-xs sm:text-sm text-stone-500">Unfiltered ground reality</span>
+          </div>
+          <div class="flex items-center gap-2.5">
+            <div class="w-7 h-7 sm:w-8 sm:h-8 rounded-md sm:rounded-lg bg-surface-50 border border-stone-100 flex items-center justify-center flex-shrink-0"><span class="iconify text-brand-500 text-xs sm:text-sm" data-icon="lucide:megaphone"></span></div>
+            <span class="text-xs sm:text-sm text-stone-500">Voices of the tribal communities</span>
+          </div>
+          <div class="flex items-center gap-2.5">
+            <div class="w-7 h-7 sm:w-8 sm:h-8 rounded-md sm:rounded-lg bg-surface-50 border border-stone-100 flex items-center justify-center flex-shrink-0"><span class="iconify text-brand-500 text-xs sm:text-sm" data-icon="lucide:map"></span></div>
+            <span class="text-xs sm:text-sm text-stone-500">The land as it truly is</span>
+          </div>
+        </div>
+      </div>
+      <div class="lg:col-span-3 order-1 lg:order-2 vr" style="opacity:0;transform:scale(.97)">
+        <div class="relative rounded-xl sm:rounded-2xl overflow-hidden border border-stone-200 shadow-xl shadow-stone-900/5 aspect-video">
+          <iframe src="https://www.youtube.com/embed/9Qyew08Nbnk?rel=0&modestbranding=1&color=white" title="Samarth Melghat Vision" frameborder="0" allow="accelerometer;autoplay;clipboard-write;encrypted-media;gyroscope;picture-in-picture" allowfullscreen class="w-full h-full" loading="lazy"></iframe>
+        </div>
+        <p class="text-[10px] sm:text-[11px] text-stone-300 mt-2 sm:mt-3 text-center">Samarth Melghat — Ground documentation of tribal heritage & the road ahead</p>
+      </div>
+    </div>
+  </div>
+</section>
 
-    const nav = document.getElementById('nav');
-    window.addEventListener('scroll', () => nav.classList.toggle('nav-solid', window.scrollY > 60));
+<!-- Roadmap -->
+<section class="py-16 sm:py-24 md:py-32 px-4 sm:px-6 bg-white">
+  <div class="max-w-7xl mx-auto">
+    <div class="text-center mb-10 sm:mb-16">
+      <span class="sl text-[10px] sm:text-[11px] font-semibold text-brand-500 tracking-[.18em] uppercase" style="opacity:0;transform:translateY(12px)">The Roadmap</span>
+      <h2 class="sl text-2xl sm:text-3xl md:text-4xl font-semibold tracking-tight mt-3 sm:mt-4 text-surface-800" style="opacity:0;transform:translateY(12px)">Phases of <span class="text-stone-300">Delivery</span></h2>
+      <p class="sl text-stone-400 font-light max-w-lg mx-auto mt-3 sm:mt-4 text-sm sm:text-[17px] px-2" style="opacity:0;transform:translateY(12px)">Not promises. Phased, funded, and accountable milestones with clear timelines.</p>
+    </div>
+    <div class="grid sm:grid-cols-3 gap-3 sm:gap-5 relative">
+      <div class="hidden sm:block absolute top-14 left-[16.66%] right-[16.66%] h-px bg-gradient-to-r from-brand-200 via-brand-300 to-brand-200"></div>
+      <div class="rc cl bg-surface-50 border border-stone-100 rounded-xl sm:rounded-2xl p-5 sm:p-8 text-center relative" style="opacity:0;transform:translateY(20px)">
+        <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-xl sm:rounded-2xl bg-emerald-50 flex items-center justify-center mx-auto mb-4 sm:mb-5 relative z-10 border-2 border-white">
+          <span class="iconify text-emerald-600 text-lg sm:text-xl" data-icon="lucide:check-circle"></span>
+        </div>
+        <div class="text-[9px] sm:text-[10px] font-bold text-emerald-600 tracking-[.18em] uppercase mb-1.5 sm:mb-2">2024–2025</div>
+        <h3 class="text-[15px] sm:text-lg font-semibold text-surface-800">Phase 1: Foundation</h3>
+        <p class="text-[11px] sm:text-sm text-stone-400 font-light mt-2 sm:mt-3 leading-relaxed">Road connectivity, mobile towers, health units, SHG formation, heritage survey.</p>
+        <div class="mt-3 sm:mt-4 pt-3 sm:pt-4 border-t border-stone-100">
+          <span class="text-sm font-semibold text-surface-800">₹680 Cr</span>
+          <span class="text-[10px] sm:text-xs text-emerald-600 font-medium ml-1.5 sm:ml-2">● Active</span>
+        </div>
+      </div>
+      <div class="rc cl bg-surface-50 border border-stone-100 rounded-xl sm:rounded-2xl p-5 sm:p-8 text-center relative" style="opacity:0;transform:translateY(20px)">
+        <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-xl sm:rounded-2xl bg-amber-50 flex items-center justify-center mx-auto mb-4 sm:mb-5 relative z-10 border-2 border-white">
+          <span class="iconify text-amber-600 text-lg sm:text-xl" data-icon="lucide:clock"></span>
+        </div>
+        <div class="text-[9px] sm:text-[10px] font-bold text-amber-600 tracking-[.18em] uppercase mb-1.5 sm:mb-2">2026–2027</div>
+        <h3 class="text-[15px] sm:text-lg font-semibold text-surface-800">Phase 2: Build</h3>
+        <p class="text-[11px] sm:text-sm text-stone-400 font-light mt-2 sm:mt-3 leading-relaxed">Eco-tourism infra, fort restoration, processing units, skill centres, digital rollout.</p>
+        <div class="mt-3 sm:mt-4 pt-3 sm:pt-4 border-t border-stone-100">
+          <span class="text-sm font-semibold text-surface-800">₹1,250 Cr</span>
+          <span class="text-[10px] sm:text-xs text-amber-600 font-medium ml-1.5 sm:ml-2">◉ Upcoming</span>
+        </div>
+      </div>
+      <div class="rc cl bg-surface-50 border border-stone-100 rounded-xl sm:rounded-2xl p-5 sm:p-8 text-center relative" style="opacity:0;transform:translateY(20px)">
+        <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-xl sm:rounded-2xl bg-blue-50 flex items-center justify-center mx-auto mb-4 sm:mb-5 relative z-10 border-2 border-white">
+          <span class="iconify text-blue-600 text-lg sm:text-xl" data-icon="lucide:target"></span>
+        </div>
+        <div class="text-[9px] sm:text-[10px] font-bold text-blue-600 tracking-[.18em] uppercase mb-1.5 sm:mb-2">2028–2030</div>
+        <h3 class="text-[15px] sm:text-lg font-semibold text-surface-800">Phase 3: Sustain</h3>
+        <p class="text-[11px] sm:text-sm text-stone-400 font-light mt-2 sm:mt-3 leading-relaxed">Self-sustaining economy, tribal enterprises, national brand, replication model.</p>
+        <div class="mt-3 sm:mt-4 pt-3 sm:pt-4 border-t border-stone-100">
+          <span class="text-sm font-semibold text-surface-800">₹1,270 Cr</span>
+          <span class="text-[10px] sm:text-xs text-blue-600 font-medium ml-1.5 sm:ml-2">◎ Vision</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
-    const progressBar = document.getElementById('progressBar');
-    window.addEventListener('scroll', () => {
-      const pct = window.scrollY / (document.documentElement.scrollHeight - window.innerHeight);
-      progressBar.style.width = (pct * 100) + '%';
-    });
+<!-- CTA -->
+<section id="join" class="py-16 sm:py-24 md:py-32 px-4 sm:px-6 relative overflow-hidden">
+  <div class="absolute inset-0 bg-gradient-to-b from-brand-50/40 to-transparent"></div>
+  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] sm:w-[500px] h-[300px] sm:h-[500px] bg-brand-500/[0.03] rounded-full blur-[80px] sm:blur-[100px]"></div>
+  <div class="relative max-w-4xl mx-auto text-center">
+    <span class="cr text-[10px] sm:text-[11px] font-semibold text-brand-500 tracking-[.18em] uppercase" style="opacity:0;transform:translateY(12px)">Be Part of the Change</span>
+    <h2 class="cr text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mt-4 sm:mt-5 leading-[1.1] text-surface-800" style="opacity:0;transform:translateY(20px)">This vision needs<br><span class="bg-gradient-to-r from-brand-500 to-brand-600 bg-clip-text text-transparent">more than one leader.</span></h2>
+    <p class="cr text-stone-400 font-light text-sm sm:text-lg max-w-md mx-auto mt-4 sm:mt-5 leading-relaxed px-2" style="opacity:0;transform:translateY(20px)">Whether you're an officer, a volunteer, an investor, or a citizen who cares — there's a role for you.</p>
+    <div class="cr flex flex-col sm:flex-row items-center justify-center gap-2.5 sm:gap-3 mt-7 sm:mt-9" style="opacity:0;transform:translateY(20px)">
+      <a href="https://untitled-chat-wheat.vercel.app/#connect" target="_blank" class="group flex items-center justify-center gap-1.5 bg-surface-800 hover:bg-surface-900 text-white text-sm font-semibold px-6 sm:px-8 py-3.5 sm:py-4 rounded-xl transition-all duration-300 shadow-lg shadow-stone-900/10 w-full sm:w-auto">
+        <span class="iconify text-sm" data-icon="lucide:message-circle"></span>
+        Connect With Us
+        <span class="iconify text-sm group-hover:translate-x-0.5 transition-transform" data-icon="lucide:arrow-right"></span>
+      </a>
+      <a href="#" class="flex items-center justify-center gap-1.5 bg-white hover:bg-stone-50 border border-stone-200 hover:border-stone-300 text-surface-800 text-sm font-medium px-6 sm:px-8 py-3.5 sm:py-4 rounded-xl transition-all duration-300 shadow-sm w-full sm:w-auto">
+        <span class="iconify text-sm" data-icon="lucide:file-text"></span>
+        Read Full Policy
+      </a>
+    </div>
+    <div class="cr flex items-center justify-center gap-2.5 sm:gap-3 mt-8 sm:mt-10" style="opacity:0;transform:translateY(12px)">
+      <a href="#" class="w-8 h-8 sm:w-9 sm:h-9 rounded-lg bg-white border border-stone-200 flex items-center justify-center text-stone-400 hover:text-surface-800 hover:border-stone-300 transition-all"><span class="iconify text-sm" data-icon="lucide:instagram"></span></a>
+      <a href="#" class="w-8 h-8 sm:w-9 sm:h-9 rounded-lg bg-white border border-stone-200 flex items-center justify-center text-stone-400 hover:text-surface-800 hover:border-stone-300 transition-all"><span class="iconify text-sm" data-icon="lucide:facebook"></span></a>
+      <a href="#" class="w-8 h-8 sm:w-9 sm:h-9 rounded-lg bg-white border border-stone-200 flex items-center justify-center text-stone-400 hover:text-surface-800 hover:border-stone-300 transition-all"><span class="iconify text-sm" data-icon="lucide:youtube"></span></a>
+      <a href="#" class="w-8 h-8 sm:w-9 sm:h-9 rounded-lg bg-white border border-stone-200 flex items-center justify-center text-stone-400 hover:text-surface-800 hover:border-stone-300 transition-all"><span class="iconify text-sm" data-icon="lucide:twitter"></span></a>
+    </div>
+  </div>
+</section>
 
-    // Hero Slideshow
-    const locations = ['Chikhaldara Hill Station','Melghat Tiger Reserve','Narnala Fort Complex','Korku Tribal Village','Bhavani Temple Trail'];
-    const slides = document.querySelectorAll('.hero-slide');
-    const locationName = document.getElementById('locationName');
-    const locationText = document.getElementById('locationText');
-    let cur = 0;
-    setInterval(() => {
-      locationText.classList.remove('visible');
-      setTimeout(() => {
-        slides[cur].classList.remove('active');
-        cur = (cur + 1) % slides.length;
-        slides[cur].classList.add('active');
-        locationName.textContent = locations[cur];
-        locationText.classList.add('visible');
-      }, 400);
-    }, 5000);
+<!-- Footer -->
+<footer class="border-t border-stone-100 bg-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 py-8 sm:py-12">
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-6 sm:gap-10">
+      <div class="col-span-2">
+        <div class="flex items-center gap-2 mb-3 sm:mb-4">
+          <div class="w-6 h-6 sm:w-7 sm:h-7 rounded-md sm:rounded-lg bg-gradient-to-br from-brand-400 to-brand-600 flex items-center justify-center shadow-sm shadow-brand-500/20"><span class="iconify text-white text-[10px] sm:text-xs" data-icon="lucide:mountain"></span></div>
+          <div class="flex flex-col">
+            <span class="font-semibold text-[11px] sm:text-[13px] tracking-tight text-surface-800 leading-none">SAMARTH MELGHAT</span>
+            <span class="text-[7px] sm:text-[9px] font-medium text-brand-500 tracking-[.14em] sm:tracking-[.2em] uppercase leading-none mt-0.5">Vision 2030</span>
+          </div>
+        </div>
+        <p class="text-[11px] sm:text-sm text-stone-400 font-light leading-relaxed max-w-sm">A comprehensive transformation initiative for tribal empowerment, heritage revival, and self-reliant development in the Melghat region.</p>
+        <div class="flex items-center gap-1.5 mt-3 text-[10px] sm:text-xs text-stone-300"><span class="iconify text-xs" data-icon="lucide:map-pin"></span><span>Chikhaldara, Amravati 444807</span></div>
+      </div>
+      <div>
+        <h4 class="text-[9px] sm:text-[10px] font-semibold tracking-[.12em] sm:tracking-[.15em] uppercase text-stone-400 mb-3 sm:mb-4">The Initiative</h4>
+        <ul class="space-y-2 sm:space-y-2.5">
+          <li><a href="#vision" class="text-[11px] sm:text-sm text-stone-400 hover:text-surface-800 transition-colors">The Vision</a></li>
+          <li><a href="#empowerment" class="text-[11px] sm:text-sm text-stone-400 hover:text-surface-800 transition-colors">Empowerment</a></li>
+          <li><a href="#heritage" class="text-[11px] sm:text-sm text-stone-400 hover:text-surface-800 transition-colors">Heritage</a></li>
+          <li><a href="#pillars" class="text-[11px] sm:text-sm text-stone-400 hover:text-surface-800 transition-colors">Six Pillars</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="text-[9px] sm:text-[10px] font-semibold tracking-[.12em] sm:tracking-[.15em] uppercase text-stone-400 mb-3 sm:mb-4">Transparency</h4>
+        <ul class="space-y-2 sm:space-y-2.5">
+          <li><a href="#" class="text-[11px] sm:text-sm text-stone-400 hover:text-surface-800 transition-colors">Policy Document</a></li>
+          <li><a href="#" class="text-[11px] sm:text-sm text-stone-400 hover:text-surface-800 transition-colors">Fund Allocation</a></li>
+          <li><a href="#" class="text-[11px] sm:text-sm text-stone-400 hover:text-surface-800 transition-colors">Progress Reports</a></li>
+          <li><a href="#join" class="text-[11px] sm:text-sm text-stone-400 hover:text-surface-800 transition-colors">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="border-t border-stone-100 mt-6 sm:mt-10 pt-6 sm:pt-8 flex flex-col sm:flex-row items-center justify-between gap-2 sm:gap-4">
+      <p class="text-[10px] sm:text-[11px] text-stone-300">© 2025 Samarth Melghat Initiative. All rights reserved.</p>
+      <p class="text-[10px] sm:text-[11px] text-stone-300">A Vision for Tribal Maharashtra · Built with Accountability</p>
+    </div>
+  </div>
+</footer>
 
-    // Split chars
-    function splitChars(el) {
-      const html = el.innerHTML;
-      el.innerHTML = html.split('<br>').map(line =>
-        line.split('').map(c => c === ' ' ? '&nbsp;' : `<span class="char">${c}</span>`).join('')
-      ).join('<br>');
-    }
-    const heroTitle = document.querySelector('.hero-title');
-    if (heroTitle) splitChars(heroTitle);
+<script>
+const menuBtn=document.getElementById('menuBtn'),mobileMenu=document.getElementById('mobileMenu');
+menuBtn.addEventListener('click',()=>mobileMenu.classList.toggle('hidden'));
+document.querySelectorAll('.ml').forEach(l=>l.addEventListener('click',()=>mobileMenu.classList.add('hidden')));
 
-    // GSAP
-    gsap.registerPlugin(ScrollTrigger);
-    gsap.set('.hero-title .char', { y: 60, opacity: 0, rotateX: -80, transformOrigin: 'bottom center' });
+const nav=document.getElementById('nav');
+window.addEventListener('scroll',()=>nav.classList.toggle('ns',window.scrollY>50));
 
-    const heroTl = gsap.timeline({ delay: 0.3 });
-    heroTl
-      .to('.hero-title .char', { y: 0, opacity: 1, rotateX: 0, stagger: 0.02, duration: 0.7, ease: 'back.out(1.7)' })
-      .fromTo('.hero-sub', { y: 25, opacity: 0 }, { y: 0, opacity: 1, duration: 0.7, ease: 'power3.out' }, '-=0.35')
-      .fromTo('.hero-fade', { y: 15, opacity: 0 }, { y: 0, opacity: 1, duration: 0.5, stagger: 0.12, ease: 'power3.out' }, '-=0.4');
+const pb=document.getElementById('progressBar');
+window.addEventListener('scroll',()=>{pb.style.width=(window.scrollY/(document.documentElement.scrollHeight-window.innerHeight)*100)+'%'});
 
-    // Stats
-    gsap.to('.stat-item', {
-      scrollTrigger: { trigger: '.stat-item', start: 'top 88%', toggleActions: 'play none none none' },
-      y: 0, opacity: 1, duration: 0.5, stagger: 0.1, ease: 'power3.out',
-      onComplete: () => {
-        document.querySelectorAll('.counter').forEach(c => {
-          gsap.to({ v: 0 }, { v: +c.dataset.target, duration: 1.8, ease: 'power2.out',
-            onUpdate() { c.textContent = Math.round(this.targets()[0].v).toLocaleString(); }
-          });
-        });
-      }
-    });
+const hLocs=['The Satpura Ranges · Melghat','Tribal Heartland · 47,000 Families','Narnala · Heritage Reclaimed','New Roads · New Futures','Sacred Grounds · Living Faith'];
+const slides=document.querySelectorAll('.hero-slide'),locName=document.getElementById('locationName'),locText=document.getElementById('locationText');
+let cur=0;
+setInterval(()=>{locText.classList.remove('visible');setTimeout(()=>{slides[cur].classList.remove('active');cur=(cur+1)%slides.length;slides[cur].classList.add('active');locName.textContent=hLocs[cur];locText.classList.add('visible')},350)},5000);
 
-    // Generic reveals
-    ['about-reveal','section-label','heritage-card','pilgrim-card','video-reveal','reach-card','cta-reveal'].forEach(cls => {
-      gsap.to(`.${cls}`, {
-        scrollTrigger: { trigger: `.${cls}`, start: 'top 88%', toggleActions: 'play none none none' },
-        y: 0, opacity: 1, duration: 0.6, stagger: 0.08, ease: 'power3.out'
-      });
-    });
+function sc(el){el.innerHTML=el.innerHTML.split('<br>').map(l=>l.split('').map(c=>c===' '?'&nbsp;':`<span class="char">${c}</span>`).join('')).join('<br>')}
+const ht=document.querySelector('.ht');if(ht)sc(ht);
 
-    // About image
-    gsap.to('.about-img', {
-      scrollTrigger: { trigger: '.about-img', start: 'top 85%', toggleActions: 'play none none none' },
-      scale: 1, opacity: 1, duration: 0.9, ease: 'power3.out'
-    });
+gsap.registerPlugin(ScrollTrigger);
+gsap.set('.ht .char',{y:50,opacity:0,rotateX:-80,transformOrigin:'bottom center'});
+const tl=gsap.timeline({delay:.25});
+tl.to('.ht .char',{y:0,opacity:1,rotateX:0,stagger:.018,duration:.65,ease:'back.out(1.7)'})
+.fromTo('.hs',{y:20,opacity:0},{y:0,opacity:1,duration:.6,ease:'power3.out'},'-=.3')
+.fromTo('.hf',{y:12,opacity:0},{y:0,opacity:1,duration:.45,stagger:.1,ease:'power3.out'},'-=.3');
 
-    // Wildlife parallax
-    gsap.to('.parallax-bg', {
-      scrollTrigger: { trigger: '#wildlife', start: 'top bottom', end: 'bottom top', scrub: 1 },
-      y: -80, ease: 'none'
-    });
-    gsap.to('.wildlife-reveal', {
-      scrollTrigger: { trigger: '.wildlife-reveal', start: 'top 80%', toggleActions: 'play none none none' },
-      y: 0, opacity: 1, duration: 0.6, stagger: 0.1, ease: 'power3.out',
-      onComplete: () => {
-        document.querySelectorAll('.w-counter').forEach(c => {
-          gsap.to({ v: 0 }, { v: +c.dataset.target, duration: 1.8, ease: 'power2.out',
-            onUpdate() { c.textContent = Math.round(this.targets()[0].v).toLocaleString() + '+'; }
-          });
-        });
-      }
-    });
+gsap.to('.si',{scrollTrigger:{trigger:'.si',start:'top 90%',toggleActions:'play none none none'},y:0,opacity:1,duration:.45,stagger:.08,ease:'power3.out',
+onComplete:()=>{document.querySelectorAll('.counter').forEach(c=>{gsap.to({v:0},{v:+c.dataset.target,duration:1.6,ease:'power2.out',onUpdate(){c.textContent=Math.round(this.targets()[0].v).toLocaleString()}})})}});
 
-    // Horizontal scroll
-    if (window.innerWidth >= 768) {
-      const hc = document.querySelector('.horizontal-container');
-      const sw = hc.scrollWidth - window.innerWidth;
-      gsap.to(hc, {
-        x: -sw, ease: 'none',
-        scrollTrigger: { trigger: '.horizontal-section', start: 'top top', end: () => '+=' + sw, scrub: 1, pin: true, anticipatePin: 1, invalidateOnRefresh: true }
-      });
-    }
+['ar','sl','hc','pc','vr','rc','cr'].forEach(c=>{gsap.to(`.${c}`,{scrollTrigger:{trigger:`.${c}`,start:'top 90%',toggleActions:'play none none none'},y:0,opacity:1,duration:.55,stagger:.06,ease:'power3.out'})});
 
-    // Smooth anchor scroll
-    document.querySelectorAll('a[href^="#"]').forEach(a => {
-      a.addEventListener('click', e => {
-        e.preventDefault();
-        const t = document.querySelector(a.getAttribute('href'));
-        if (t) window.scrollTo({ top: t.getBoundingClientRect().top + window.scrollY - 72, behavior: 'smooth' });
-      });
-    });
+gsap.to('.ai',{scrollTrigger:{trigger:'.ai',start:'top 85%',toggleActions:'play none none none'},scale:1,opacity:1,duration:.85,ease:'power3.out'});
 
-    // Refresh ScrollTrigger on resize (for horizontal scroll)
-    let resizeTimer;
-    window.addEventListener('resize', () => {
-      clearTimeout(resizeTimer);
-      resizeTimer = setTimeout(() => ScrollTrigger.refresh(), 250);
-    });
-  </script>
+gsap.to('.parallax-bg',{scrollTrigger:{trigger:'.parallax-bg',start:'top bottom',end:'bottom top',scrub:1},y:-70,ease:'none'});
+
+gsap.to('.wr',{scrollTrigger:{trigger:'.wr',start:'top 82%',toggleActions:'play none none none'},y:0,opacity:1,duration:.55,stagger:.08,ease:'power3.out',
+onComplete:()=>{document.querySelectorAll('.wc').forEach(c=>{gsap.to({v:0},{v:+c.dataset.target,duration:1.6,ease:'power2.out',onUpdate(){c.textContent=Math.round(this.targets()[0].v).toLocaleString()}})})}});
+
+// Horizontal scroll only on desktop
+if(window.innerWidth>=768){
+  const hc=document.querySelector('.hs-container'),sw=hc.scrollWidth-window.innerWidth;
+  gsap.to(hc,{x:-sw,ease:'none',scrollTrigger:{trigger:'.hs-section',start:'top top',end:()=>'+='+sw,scrub:1,pin:true,anticipatePin:1,invalidateOnRefresh:true}});
+}
+
+document.querySelectorAll('a[href^="#"]').forEach(a=>{a.addEventListener('click',e=>{e.preventDefault();const t=document.querySelector(a.getAttribute('href'));if(t)window.scrollTo({top:t.getBoundingClientRect().top+window.scrollY-64,behavior:'smooth'})})});
+
+let rt;window.addEventListener('resize',()=>{clearTimeout(rt);rt=setTimeout(()=>ScrollTrigger.refresh(),250)});
+</script>
 </body>
 </html>
