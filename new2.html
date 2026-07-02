@@ -1,0 +1,837 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Samarth Melghat — Tribal Heritage & Pilgrimage Tourism</title>
+<meta name="description" content="Transform Melghat into a pan-India Adivasi pilgrimage destination. Sacred rivers, tribal heritage, and sustainable tourism infrastructure.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,500;9..144,600;9..144,700&family=Work+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --ink:#12201a;
+    --forest:#1e3a29;
+    --forest-2:#284a34;
+    --ochre:#c98a2c;
+    --ochre-light:#e3ac52;
+    --rust:#a83e23;
+    --teal:#3e7268;
+    --bone:#f3ecd9;
+    --bone-dim:#d8cca3;
+    --line:rgba(243,236,217,0.16);
+    --shadow: 0 30px 60px -20px rgba(0,0,0,0.5);
+  }
+
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--ink);
+    color:var(--bone);
+    font-family:'Work Sans', sans-serif;
+    font-weight:400;
+    overflow-x:hidden;
+    line-height:1.6;
+  }
+  ::selection{background:var(--ochre);color:var(--ink);}
+
+  h1,h2,h3,h4{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    letter-spacing:-0.01em;
+    line-height:1.08;
+  }
+
+  .eyebrow{
+    font-family:'JetBrains Mono', monospace;
+    text-transform:uppercase;
+    letter-spacing:0.16em;
+    font-size:0.72rem;
+    color:var(--ochre-light);
+    display:flex;
+    align-items:center;
+    gap:0.6em;
+  }
+  .eyebrow::before{
+    content:'';
+    width:24px;height:1px;
+    background:var(--ochre-light);
+    display:inline-block;
+  }
+
+  img{max-width:100%;display:block;}
+  a{color:inherit;text-decoration:none;}
+  section{position:relative;}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 6vw;}
+
+  /* ===== NAV ===== */
+  header{
+    position:fixed;top:0;left:0;right:0;z-index:100;
+    padding:22px 6vw;
+    display:flex;justify-content:space-between;align-items:center;
+    transition:background .4s ease, padding .4s ease, backdrop-filter .4s ease;
+  }
+  header.scrolled{
+    background:rgba(18,32,26,0.86);
+    backdrop-filter:blur(10px);
+    padding:14px 6vw;
+    border-bottom:1px solid var(--line);
+  }
+  .brand{display:flex;align-items:center;gap:12px;font-family:'Fraunces',serif;font-weight:600;font-size:1.05rem;letter-spacing:0.01em;}
+  .brand img{height:34px;width:34px;object-fit:contain;border-radius:50%;background:var(--bone);padding:3px;}
+  nav ul{list-style:none;display:flex;gap:2.4rem;}
+  nav a{font-size:0.86rem;letter-spacing:0.02em;color:var(--bone-dim);position:relative;}
+  nav a:hover{color:var(--bone);}
+  nav a::after{
+    content:'';position:absolute;left:0;bottom:-4px;width:0;height:1px;background:var(--ochre-light);
+    transition:width .3s ease;
+  }
+  nav a:hover::after{width:100%;}
+  .nav-toggle{display:none;}
+
+  /* ===== HERO ===== */
+  .hero{
+    height:100vh;
+    min-height:640px;
+    position:relative;
+    display:flex;
+    align-items:flex-end;
+    overflow:hidden;
+    background:var(--ink);
+  }
+  .hero-video-wrap{position:absolute;inset:0;overflow:hidden;}
+  .hero-video-wrap iframe{
+    position:absolute;top:50%;left:50%;
+    width:177.77vh; height:56.25vw;
+    min-width:100%; min-height:100%;
+    transform:translate(-50%,-50%);
+    pointer-events:none;
+  }
+  .hero-scrim{
+    position:absolute;inset:0;
+    background:
+      linear-gradient(180deg, rgba(18,32,26,0.55) 0%, rgba(18,32,26,0.35) 35%, rgba(18,32,26,0.75) 78%, var(--ink) 100%);
+  }
+  .hero-content{
+    position:relative;z-index:2;
+    padding:0 6vw 7vw;
+    max-width:900px;
+  }
+  .hero .eyebrow{margin-bottom:1.4rem;}
+  .hero h1{
+    font-size:clamp(2.4rem, 6vw, 5rem);
+    color:var(--bone);
+    margin-bottom:1.3rem;
+  }
+  .hero h1 em{
+    font-style:italic;
+    color:var(--ochre-light);
+  }
+  .hero p.lead{
+    font-size:1.05rem;
+    color:var(--bone-dim);
+    max-width:540px;
+    margin-bottom:2.2rem;
+  }
+  .cta-row{display:flex;gap:1rem;flex-wrap:wrap;}
+  .btn{
+    display:inline-flex;align-items:center;gap:0.5em;
+    padding:0.9em 1.6em;
+    font-size:0.86rem;
+    font-family:'JetBrains Mono', monospace;
+    letter-spacing:0.03em;
+    border-radius:2px;
+    transition:transform .3s ease, background .3s ease, border-color .3s ease;
+  }
+  .btn-solid{background:var(--ochre);color:var(--ink);}
+  .btn-solid:hover{background:var(--ochre-light);transform:translateY(-2px);}
+  .btn-ghost{border:1px solid var(--line);color:var(--bone);}
+  .btn-ghost:hover{border-color:var(--ochre-light);transform:translateY(-2px);}
+
+  .scroll-cue{
+    position:absolute; z-index:2; right:6vw; bottom:2.4rem;
+    display:flex;flex-direction:column;align-items:center;gap:10px;
+    color:var(--bone-dim); font-family:'JetBrains Mono',monospace; font-size:0.68rem; letter-spacing:0.14em;
+  }
+  .scroll-cue .line{width:1px;height:46px;background:linear-gradient(var(--ochre-light), transparent);
+    animation:scrollpulse 1.8s ease-in-out infinite;}
+  @keyframes scrollpulse{0%{transform:scaleY(0.3);opacity:0.4;}50%{transform:scaleY(1);opacity:1;}100%{transform:scaleY(0.3);opacity:0.4;}}
+
+  /* ===== REVEAL ===== */
+  .reveal{opacity:0; transform:translateY(36px); transition:opacity .9s cubic-bezier(.2,.7,.2,1), transform .9s cubic-bezier(.2,.7,.2,1);}
+  .reveal.in{opacity:1; transform:translateY(0);}
+  .reveal-delay-1{transition-delay:.1s;}
+  .reveal-delay-2{transition-delay:.22s;}
+  .reveal-delay-3{transition-delay:.34s;}
+  .reveal-delay-4{transition-delay:.46s;}
+
+  /* ===== VISION ===== */
+  .vision{padding:8.5rem 0 6rem;}
+  .vision-grid{
+    display:grid;grid-template-columns:1fr 1fr;gap:5vw;align-items:start;
+  }
+  .vision h2{font-size:clamp(1.9rem,3.4vw,2.7rem);margin:1rem 0 1.4rem;}
+  .vision p{color:var(--bone-dim);font-size:1.02rem;max-width:46ch;}
+  .vision-photos{display:grid;grid-template-columns:1.2fr 1fr;gap:14px;}
+  .vision-photos img{border-radius:4px;object-fit:cover;height:100%;filter:saturate(1.05) contrast(1.02);box-shadow:var(--shadow);}
+  .vision-photos .p1{height:420px;}
+  .vision-photos .p2{height:420px;margin-top:56px;}
+
+  .stat-strip{
+    margin-top:4.5rem;
+    display:grid;grid-template-columns:repeat(3,1fr);
+    border-top:1px solid var(--line); border-bottom:1px solid var(--line);
+  }
+  .stat-strip div{padding:1.6rem 1rem 1.6rem 0;border-right:1px solid var(--line);}
+  .stat-strip div:last-child{border-right:none;}
+  .stat-strip h4{font-size:1.1rem;color:var(--ochre-light);margin-bottom:0.3rem;}
+  .stat-strip p{font-size:0.86rem;color:var(--bone-dim);max-width:24ch;}
+
+  /* ===== WARLI DIVIDER ===== */
+  .warli-divider{padding:3rem 0 1rem;}
+  .warli-divider svg{width:100%;height:auto;display:block;}
+  .warli-divider path, .warli-divider circle, .warli-divider line, .warli-divider polygon{
+    stroke:var(--ochre-light);
+    stroke-width:2;
+    fill:none;
+    stroke-dasharray:1400;
+    stroke-dashoffset:1400;
+    transition:stroke-dashoffset 2.4s cubic-bezier(.2,.7,.2,1);
+  }
+  .warli-divider.in path, .warli-divider.in circle, .warli-divider.in line, .warli-divider.in polygon{
+    stroke-dashoffset:0;
+  }
+  .warli-divider .fillshape{fill:var(--ochre-light);stroke:none;opacity:0;transition:opacity 1.4s ease 1.6s;}
+  .warli-divider.in .fillshape{opacity:1;}
+
+  /* ===== PILLARS ===== */
+  .pillars{background:var(--forest);padding:7rem 0;}
+  .pillars-head{max-width:640px;margin-bottom:3.4rem;}
+  .pillars-head h2{font-size:clamp(1.9rem,3.4vw,2.7rem);margin-top:1rem;}
+  .pillars-head p{color:var(--bone-dim);margin-top:1rem;}
+  .pillar-grid{
+    display:grid;grid-template-columns:repeat(4,1fr);gap:1px;
+    background:var(--line);
+    border:1px solid var(--line);
+  }
+  .pillar-card{
+    background:var(--forest);
+    padding:2rem 1.6rem;
+    transition:background .35s ease, transform .35s ease;
+  }
+  .pillar-card:hover{background:var(--forest-2); transform:translateY(-4px);}
+  .pillar-icon{
+    width:44px;height:44px;border-radius:50%;
+    background:rgba(201,138,44,0.14);
+    display:flex;align-items:center;justify-content:center;
+    font-size:1.2rem;margin-bottom:1.1rem;
+  }
+  .pillar-card h4{font-size:1.02rem;font-weight:600;margin-bottom:0.5rem;}
+  .pillar-card p{font-size:0.86rem;color:var(--bone-dim);}
+
+  /* ===== LANDMARKS (pinned showcase) ===== */
+  .landmarks{padding:7.5rem 0 2rem;}
+  .landmarks-head{max-width:640px;margin-bottom:3rem;}
+  .landmarks-head h2{font-size:clamp(1.9rem,3.4vw,2.7rem);margin-top:1rem;}
+  .landmarks-head p{color:var(--bone-dim);margin-top:1rem;}
+  .landmarks-inner{
+    display:grid;grid-template-columns:0.9fr 1.1fr;gap:5vw;
+  }
+  .landmarks-media{
+    position:sticky; top:0; height:100vh;
+    display:flex;align-items:center;
+  }
+  .media-frame{
+    position:relative; width:100%; aspect-ratio:4/5; border-radius:6px; overflow:hidden;
+    box-shadow:var(--shadow);
+    background:var(--forest);
+  }
+  .media-frame img{
+    position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
+    opacity:0; transition:opacity 1s ease;
+  }
+  .media-frame img.active{opacity:1;}
+  .media-tag{
+    position:absolute; left:18px; bottom:18px; z-index:2;
+    font-family:'JetBrains Mono',monospace; font-size:0.7rem; letter-spacing:0.1em;
+    background:rgba(18,32,26,0.72); color:var(--ochre-light);
+    padding:0.5em 0.9em; border-radius:2px; backdrop-filter:blur(4px);
+  }
+  .landmarks-text{display:flex;flex-direction:column;}
+  .landmark-step{
+    min-height:88vh;
+    display:flex;flex-direction:column;justify-content:center;
+    opacity:0.25; transition:opacity .5s ease;
+    padding:2rem 0;
+  }
+  .landmark-step.active{opacity:1;}
+  .landmark-step .badge{
+    font-family:'JetBrains Mono',monospace; font-size:0.72rem; letter-spacing:0.1em;
+    color:var(--rust); text-transform:uppercase; margin-bottom:1rem;
+  }
+  .landmark-step h3{font-size:clamp(1.5rem,2.6vw,2.1rem);margin-bottom:1rem;}
+  .landmark-step p{color:var(--bone-dim); max-width:48ch; margin-bottom:1.2rem;}
+  .landmark-step ul{list-style:none;}
+  .landmark-step li{
+    font-size:0.9rem; color:var(--bone); padding-left:1.3em; position:relative; margin-bottom:0.5em;
+  }
+  .landmark-step li::before{content:'✓'; position:absolute; left:0; color:var(--ochre-light);}
+
+  /* ===== RIVERS (horizontal pin) ===== */
+  .rivers-pin{height:340vh; position:relative;}
+  .rivers-track{
+    position:sticky; top:0; height:100vh;
+    display:flex; align-items:stretch;
+    width:max-content;
+  }
+  .river-card{
+    width:100vw; height:100vh;
+    display:flex; flex-direction:column; justify-content:center;
+    padding:0 8vw;
+    position:relative;
+    overflow:hidden;
+  }
+  .river-card::before{
+    content:''; position:absolute; inset:0; opacity:0.9; z-index:0;
+  }
+  .river-card.c1::before{background:linear-gradient(135deg, #163a52, #12201a 70%);}
+  .river-card.c2::before{background:linear-gradient(135deg, #204a34, #12201a 70%);}
+  .river-card.c3::before{background:linear-gradient(135deg, #4a3418, #12201a 70%);}
+  .river-card.c4::before{background:linear-gradient(135deg, #3a1f18, #12201a 70%);}
+  .river-card > *{position:relative;z-index:1;}
+  .river-index{font-family:'JetBrains Mono',monospace;font-size:0.78rem;color:var(--ochre-light);letter-spacing:0.14em;margin-bottom:1.2rem;}
+  .river-card h3{font-size:clamp(2rem,4.4vw,3.4rem);max-width:11ch;margin-bottom:1.2rem;}
+  .river-card ul{list-style:none;max-width:40ch;}
+  .river-card li{font-size:0.98rem;color:var(--bone-dim);padding-left:1.4em;position:relative;margin-bottom:0.6em;}
+  .river-card li::before{content:'—';position:absolute;left:0;color:var(--ochre-light);}
+  .river-progress{
+    position:fixed; left:0; right:0; bottom:0; height:3px; z-index:5;
+    background:var(--line);
+    display:none;
+  }
+  .river-progress-bar{height:100%;width:0%;background:var(--ochre-light);}
+
+  .river-final{align-items:flex-start;justify-content:center;}
+  .river-final h3{max-width:14ch;}
+  .river-final p{color:var(--bone-dim);max-width:42ch;margin-bottom:1.6rem;}
+
+  /* ===== IMPACT ===== */
+  .impact{padding:7.5rem 0;background:var(--forest);}
+  .impact-head{max-width:600px;margin-bottom:3.5rem;}
+  .impact-head h2{font-size:clamp(1.9rem,3.4vw,2.7rem);margin-top:1rem;}
+  .impact-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);}
+  .impact-card{background:var(--forest);padding:2.6rem 1.6rem;}
+  .impact-num{font-family:'Fraunces',serif;font-weight:600;font-size:clamp(2rem,3.6vw,3rem);color:var(--ochre-light);}
+  .impact-label{font-size:0.86rem;color:var(--bone-dim);margin-top:0.5rem;}
+
+  /* ===== JOIN ===== */
+  .join{padding:7.5rem 0;}
+  .join-head{max-width:640px;margin-bottom:3rem;}
+  .join-head h2{font-size:clamp(1.9rem,3.4vw,2.7rem);margin-top:1rem;}
+  .join-head p{color:var(--bone-dim);margin-top:1rem;}
+  .join-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.6rem;margin-bottom:2rem;}
+  .join-card{
+    border:1px solid var(--line); border-radius:6px; padding:2.4rem;
+    transition:border-color .3s ease, transform .3s ease;
+  }
+  .join-card:hover{border-color:var(--ochre-light); transform:translateY(-4px);}
+  .join-card h3{font-size:1.3rem;margin-bottom:0.8rem;}
+  .join-card p{color:var(--bone-dim);font-size:0.94rem;margin-bottom:1.2rem;}
+  .join-card ul{list-style:none;}
+  .join-card li{font-size:0.9rem;color:var(--bone);padding-left:1.4em;position:relative;margin-bottom:0.5em;}
+  .join-card li::before{content:'→';position:absolute;left:0;color:var(--ochre-light);}
+  .chip-row{display:flex;gap:1rem;flex-wrap:wrap;}
+  .chip{
+    border:1px solid var(--line); border-radius:30px; padding:0.6em 1.2em;
+    font-size:0.82rem; color:var(--bone-dim); font-family:'JetBrains Mono',monospace;
+  }
+
+  /* ===== FINAL CTA ===== */
+  .final-cta{
+    padding:8rem 0 6rem; text-align:center; position:relative;
+    background:radial-gradient(ellipse at 50% 0%, rgba(201,138,44,0.14), transparent 60%);
+  }
+  .final-cta h2{font-size:clamp(2.1rem,5vw,3.6rem);max-width:16ch;margin:1rem auto 1.6rem;}
+  .final-cta p{color:var(--bone-dim);max-width:50ch;margin:0 auto 2.2rem;}
+  .final-cta .cta-row{justify-content:center;}
+
+  footer{
+    border-top:1px solid var(--line);
+    padding:3.4rem 0 2rem;
+  }
+  .footer-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:3rem;margin-bottom:2.6rem;}
+  .footer-brand{display:flex;align-items:center;gap:12px;font-family:'Fraunces',serif;font-weight:600;margin-bottom:0.9rem;}
+  .footer-brand img{height:30px;width:30px;border-radius:50%;background:var(--bone);padding:3px;}
+  footer p.desc{color:var(--bone-dim);font-size:0.9rem;max-width:34ch;}
+  footer h5{font-family:'JetBrains Mono',monospace;font-size:0.72rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--ochre-light);margin-bottom:0.9rem;}
+  footer ul{list-style:none;}
+  footer li{margin-bottom:0.6em;font-size:0.9rem;color:var(--bone-dim);}
+  .footer-bottom{
+    border-top:1px solid var(--line); padding-top:1.6rem;
+    display:flex;justify-content:space-between;flex-wrap:wrap;gap:1rem;
+    font-size:0.8rem;color:var(--bone-dim);
+    font-family:'JetBrains Mono',monospace;
+  }
+
+  @media (max-width:920px){
+    nav{display:none;}
+    .vision-grid{grid-template-columns:1fr;}
+    .vision-photos{margin-top:2.4rem;}
+    .vision-photos .p2{margin-top:0;}
+    .pillar-grid{grid-template-columns:repeat(2,1fr);}
+    .landmarks-inner{grid-template-columns:1fr;}
+    .landmarks-media{position:relative; top:auto; height:52vh; margin-bottom:2rem;}
+    .landmark-step{min-height:auto; opacity:1; padding:1.2rem 0 2.6rem;}
+    .impact-grid{grid-template-columns:repeat(2,1fr);}
+    .join-grid{grid-template-columns:1fr;}
+    .footer-grid{grid-template-columns:1fr 1fr;}
+    .stat-strip{grid-template-columns:1fr;}
+    .stat-strip div{border-right:none;border-bottom:1px solid var(--line);}
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    .reveal{opacity:1;transform:none;transition:none;}
+    .warli-divider path,.warli-divider circle,.warli-divider line,.warli-divider polygon{stroke-dashoffset:0;transition:none;}
+    .warli-divider .fillshape{opacity:1;}
+  }
+</style>
+</head>
+<body>
+
+<header id="siteHeader">
+  <a href="#top" class="brand">
+    <img src="https://untitled-chat-wheat.vercel.app/samarth-melghat-logo.png" alt="Samarth Melghat logo">
+    Samarth Melghat
+  </a>
+  <nav>
+    <ul>
+      <li><a href="#vision">Vision</a></li>
+      <li><a href="#pillars">Pillars</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#rivers">Rivers</a></li>
+      <li><a href="#connect">Join Us</a></li>
+    </ul>
+  </nav>
+</header>
+
+<section class="hero" id="top">
+  <div class="hero-video-wrap">
+    <iframe src="https://www.youtube.com/embed/9Qyew08Nbnk?autoplay=1&mute=1&loop=1&playlist=9Qyew08Nbnk&controls=0&showinfo=0&rel=0&iv_load_policy=3&modestbranding=1&playsinline=1&disablekb=1"
+      frameborder="0" allow="autoplay; encrypted-media" allowfullscreen title="Melghat pilgrimage vision film"></iframe>
+	  
+	  
+
+  </div>
+  <div class="hero-scrim"></div>
+  <div class="hero-content">
+    <div class="eyebrow">Melghat Vikas Foundation</div>
+    <h1>A pilgrimage <em>written</em> in rivers, forests &amp; tribal memory</h1>
+    <p class="lead">Three sacred rivers. Adivasi heritage carried across generations. A plan to turn Melghat into a pan‑India pilgrimage destination — without losing what makes it sacred.</p>
+    <div class="cta-row">
+      <a href="#vision" class="btn btn-solid">Explore the Vision</a>
+      <a href="#connect" class="btn btn-ghost">Partner With Us</a>
+    </div>
+  </div>
+  <div class="scroll-cue"><span>SCROLL</span><span class="line"></span></div>
+</section>
+
+<section class="vision" id="vision">
+  <div class="wrap vision-grid">
+    <div class="reveal">
+      <div class="eyebrow">The Vision</div>
+      <h2>Heritage as the foundation, tourism as the vehicle</h2>
+      <p>Melghat Vikas Foundation is building a pilgrimage corridor that connects Adivasi communities across Madhya Pradesh, Maharashtra, Chhattisgarh and beyond. Three rivers, dense forest, and centuries of tribal history become the infrastructure for something new: a place people travel to, not past.</p>
+      <p style="margin-top:1rem;">The goal isn't a monument for outsiders to admire — it's an economy tribal communities can own, staffed by tribal hands, telling tribal stories.</p>
+      <div class="stat-strip">
+        <div><h4>Pan‑India Hub</h4><p>Connecting Adivasi communities across regions</p></div>
+        <div><h4>Economic Empowerment</h4><p>Sustainable livelihoods through tourism</p></div>
+        <div><h4>Eco‑Tourism</h4><p>Three rivers and forest as natural infrastructure</p></div>
+      </div>
+    </div>
+    <div class="vision-photos reveal reveal-delay-2">
+      <img class="p1" src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/ChatGPT%20Image%20Jun%2016%2C%202026%2C%2011_47_44%20PM-Al3oNPBCSoPz66bHoSsHpvyDZkX6IL.png" alt="Sant Jatu Baba Museum Complex concept render">
+      <img class="p2" src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/ChatGPT%20Image%20Jun%2016%2C%202026%2C%2007_42_58%20PM-iQ1f735QHnhiAqUQkc7Nd3TwXzVHKZ.png" alt="Integrated Tourism Campus concept render">
+    </div>
+  </div>
+
+  <div class="wrap warli-divider" id="warliDivider">
+    <svg viewBox="0 0 1200 160" xmlns="http://www.w3.org/2000/svg">
+      <!-- sun -->
+      <circle class="fillshape" cx="90" cy="55" r="26"/>
+      <line x1="90" y1="10" x2="90" y2="0"/>
+      <line x1="90" y1="100" x2="90" y2="110"/>
+      <line x1="45" y1="55" x2="35" y2="55"/>
+      <line x1="135" y1="55" x2="145" y2="55"/>
+      <!-- tree -->
+      <line x1="260" y1="150" x2="260" y2="70"/>
+      <line x1="260" y1="90" x2="230" y2="60"/>
+      <line x1="260" y1="90" x2="290" y2="60"/>
+      <line x1="260" y1="70" x2="235" y2="40"/>
+      <line x1="260" y1="70" x2="285" y2="40"/>
+      <circle cx="260" cy="55" r="4" class="fillshape"/>
+      <!-- dancing figures holding hands -->
+      <g>
+        <circle cx="420" cy="60" r="8" class="fillshape"/>
+        <line x1="420" y1="68" x2="420" y2="105"/>
+        <line x1="420" y1="80" x2="398" y2="70"/>
+        <line x1="420" y1="80" x2="450" y2="60"/>
+        <line x1="420" y1="105" x2="400" y2="140"/>
+        <line x1="420" y1="105" x2="440" y2="140"/>
+
+        <circle cx="480" cy="50" r="8" class="fillshape"/>
+        <line x1="480" y1="58" x2="480" y2="98"/>
+        <line x1="480" y1="70" x2="450" y2="60"/>
+        <line x1="480" y1="70" x2="510" y2="80"/>
+        <line x1="480" y1="98" x2="460" y2="140"/>
+        <line x1="480" y1="98" x2="500" y2="135"/>
+
+        <circle cx="545" cy="60" r="8" class="fillshape"/>
+        <line x1="545" y1="68" x2="545" y2="105"/>
+        <line x1="545" y1="80" x2="510" y2="80"/>
+        <line x1="545" y1="78" x2="575" y2="65"/>
+        <line x1="545" y1="105" x2="525" y2="140"/>
+        <line x1="545" y1="105" x2="565" y2="140"/>
+      </g>
+      <!-- river zigzag -->
+      <path d="M650 130 Q 690 90, 730 130 T 810 130 T 890 130 T 970 130 T 1050 130 T 1130 130"/>
+      <!-- hills -->
+      <path d="M900 150 L 950 90 L 1000 150 Z"/>
+      <path d="M980 150 L 1040 70 L 1100 150 Z"/>
+    </svg>
+  </div>
+</section>
+
+<section class="pillars" id="pillars">
+  <div class="wrap">
+    <div class="pillars-head reveal">
+      <div class="eyebrow">Framework</div>
+      <h2>Pillars of change</h2>
+      <p>Eight commitments woven through every project — no site gets built without them.</p>
+    </div>
+    <div class="pillar-grid">
+      <div class="pillar-card reveal"><div class="pillar-icon">🎓</div><h4>Education</h4><p>Quality learning opportunities for tribal youth.</p></div>
+      <div class="pillar-card reveal reveal-delay-1"><div class="pillar-icon">💼</div><h4>Skills Development</h4><p>Job training and employment pathways.</p></div>
+      <div class="pillar-card reveal reveal-delay-2"><div class="pillar-icon">❤️</div><h4>Healthcare</h4><p>Accessible medical services and wellness.</p></div>
+      <div class="pillar-card reveal reveal-delay-3"><div class="pillar-icon">👩</div><h4>Women Empowerment</h4><p>Leadership and economic independence.</p></div>
+      <div class="pillar-card reveal"><div class="pillar-icon">🏛️</div><h4>Cultural Heritage</h4><p>Preserve and celebrate tribal traditions.</p></div>
+      <div class="pillar-card reveal reveal-delay-1"><div class="pillar-icon">🌾</div><h4>Sustainable Agriculture</h4><p>Ethical, organic farming practices.</p></div>
+      <div class="pillar-card reveal reveal-delay-2"><div class="pillar-icon">🧳</div><h4>Spiritual Tourism</h4><p>Sacred pilgrimage experiences.</p></div>
+      <div class="pillar-card reveal reveal-delay-3"><div class="pillar-icon">🌍</div><h4>Community Building</h4><p>Unity across Adivasi communities.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="landmarks" id="projects">
+  <div class="wrap">
+    <div class="landmarks-head reveal">
+      <div class="eyebrow">Landmark Projects</div>
+      <h2>Three sites, one campus</h2>
+      <p>Scroll through the flagship infrastructure anchoring the pilgrimage corridor.</p>
+    </div>
+    <div class="landmarks-inner">
+      <div class="landmarks-media">
+        <div class="media-frame">
+          <img class="landmark-img active" data-index="0" src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/ChatGPT%20Image%20Jun%2016%2C%202026%2C%2011_45_50%20PM-5PbpZ9V8K1zqs3aoWTQ76EmjljBmVa.png" alt="Sant Jatu Baba Museum and Temple Complex">
+          <img class="landmark-img" data-index="1" src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/ChatGPT%20Image%20Jun%2016%2C%202026%2C%2011_54_48%20PM-rkHDQmq1RS7wSfVsMfL7GFZ4wONuTf.png" alt="100-Foot Birsa Munda Statue">
+          <img class="landmark-img" data-index="2" src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/ChatGPT%20Image%20Jun%2016%2C%202026%2C%2010_24_53%20PM-mUBQpYvpTnBjd3brtBwhoZ2Cd3LC9J.png" alt="Integrated Pilgrimage and Tourism Campus">
+          <div class="media-tag" id="mediaTag">01 — PRIMARY LANDMARK</div>
+        </div>
+      </div>
+      <div class="landmarks-text">
+        <div class="landmark-step active" data-index="0">
+          <div class="badge">Primary Landmark</div>
+          <h3>Sant Jatu Baba Museum &amp; Temple Complex</h3>
+          <p>A grand architectural complex celebrating tribal freedom fighters and cultural heritage, built to hold both pilgrims and scholars.</p>
+          <ul>
+            <li>Tribal Heritage &amp; Freedom gallery</li>
+            <li>Interactive cultural exhibits</li>
+            <li>Capacity for 5,000+ visitors daily</li>
+          </ul>
+        </div>
+        <div class="landmark-step" data-index="1">
+          <div class="badge">Spiritual Symbol</div>
+          <h3>100‑Foot Birsa Munda Statue</h3>
+          <p>A towering tribute to the legendary Adivasi freedom fighter, overlooking the sacred valley as a beacon of tribal pride.</p>
+          <ul>
+            <li>Architectural marvel with museum base</li>
+            <li>Panoramic valley views</li>
+            <li>Sacred gathering space</li>
+          </ul>
+        </div>
+        <div class="landmark-step" data-index="2">
+          <div class="badge">Master Campus</div>
+          <h3>Integrated Pilgrimage &amp; Tourism Campus</h3>
+          <p>A comprehensive development spanning Melghat's three rivers — spiritual centers, eco-lodges, and vendor markets built for the local economy.</p>
+          <ul>
+            <li>Hotels &amp; heritage homestays</li>
+            <li>Boat operators &amp; river activities</li>
+            <li>Local vendor markets &amp; restaurants</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="rivers-pin" id="rivers">
+  <div class="rivers-track" id="riversTrack">
+    <div class="river-card c1">
+      <div class="river-index">01 / 03 — WATER</div>
+      <h3>Sipna River</h3>
+      <ul>
+        <li>Eco-tourism corridors</li>
+        <li>Water sports &amp; boating</li>
+        <li>Riverside meditation centers</li>
+      </ul>
+    </div>
+    <div class="river-card c2">
+      <div class="river-index">02 / 03 — FOREST</div>
+      <h3>Satpura River</h3>
+      <ul>
+        <li>Forest trails &amp; trekking</li>
+        <li>Wildlife observation</li>
+        <li>Nature camps</li>
+      </ul>
+    </div>
+    <div class="river-card c3">
+      <div class="river-index">03 / 03 — VALLEY</div>
+      <h3>Melghat Valley</h3>
+      <ul>
+        <li>Pilgrimage routes</li>
+        <li>Agricultural heritage</li>
+        <li>Cultural festivals</li>
+      </ul>
+    </div>
+    <div class="river-card c4 river-final">
+      <div class="river-index">THREE RIVERS, ONE VISION</div>
+      <h3>Natural resources as the foundation</h3>
+      <p>Sipna, Satpura, and the Melghat Valley aren't backdrops — they're the infrastructure eco-tourism and spiritual growth are built on.</p>
+      <a href="#connect" class="btn btn-solid">See how to get involved</a>
+    </div>
+  </div>
+</section>
+<div class="river-progress" id="riverProgress"><div class="river-progress-bar" id="riverProgressBar"></div></div>
+
+<section class="impact">
+  <div class="wrap">
+    <div class="impact-head reveal">
+      <div class="eyebrow">Projected Impact</div>
+      <h2>What sustainable pilgrimage tourism can generate</h2>
+    </div>
+    <div class="impact-grid">
+      <div class="impact-card reveal"><div class="impact-num" data-target="100" data-suffix="K+">0</div><div class="impact-label">Annual visitors</div></div>
+      <div class="impact-card reveal reveal-delay-1"><div class="impact-num" data-target="5000" data-suffix="+">0</div><div class="impact-label">Local jobs</div></div>
+      <div class="impact-card reveal reveal-delay-2"><div class="impact-num" data-target="500" data-prefix="₹" data-suffix="Cr">0</div><div class="impact-label">Economic value</div></div>
+      <div class="impact-card reveal reveal-delay-3"><div class="impact-num" data-target="25" data-suffix="+">0</div><div class="impact-label">Lodging units</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="join" id="connect">
+  <div class="wrap">
+    <div class="join-head reveal">
+      <div class="eyebrow">Join the Movement</div>
+      <h2>Multiple ways to partner and contribute</h2>
+      <p>Whether you bring grassroots expertise or capital, there's a defined role in the corridor.</p>
+    </div>
+    <div class="join-grid">
+      <div class="join-card reveal">
+        <h3>NGOs &amp; Social Organizations</h3>
+        <p>Collaborate on community development, education, healthcare, and women's empowerment initiatives.</p>
+        <ul>
+          <li>Share expertise &amp; resources</li>
+          <li>Implement grassroots programs</li>
+          <li>Build sustainable partnerships</li>
+        </ul>
+      </div>
+      <div class="join-card reveal reveal-delay-1">
+        <h3>Corporates &amp; CSR Partners</h3>
+        <p>Invest in infrastructure development, cultural preservation, and sustainable tourism projects.</p>
+        <ul>
+          <li>Fund flagship projects</li>
+          <li>Employee volunteering programs</li>
+          <li>Brand association &amp; impact</li>
+        </ul>
+      </div>
+    </div>
+    <div class="chip-row reveal">
+      <div class="chip">🏗️ Infrastructure — temples, statues, hotels</div>
+      <div class="chip">👥 Community — skills, health, education</div>
+      <div class="chip">📢 Marketing — pilgrimage outreach</div>
+    </div>
+  </div>
+</section>
+
+<section class="final-cta">
+  <div class="wrap">
+    <div class="eyebrow" style="justify-content:center;">Let's Build Together</div>
+    <h2>The future of Melghat is a partnership, not a plan on paper</h2>
+    <p>Partner with us to transform Melghat into a beacon of tribal pride, spiritual significance, and sustainable prosperity.</p>
+    <div class="cta-row">
+      <a href="mailto:connect@melghatvikas.org" class="btn btn-solid">Get in Touch</a>
+      <a href="#" class="btn btn-ghost">Download Vision Document</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand">
+          <img src="https://untitled-chat-wheat.vercel.app/samarth-melghat-logo.png" alt="Samarth Melghat logo">
+          Samarth Melghat
+        </div>
+        <p class="desc">Transforming tribal heritage into a pilgrimage destination for Adivasi communities across India.</p>
+      </div>
+      <div>
+        <h5>Quick Links</h5>
+        <ul>
+          <li><a href="#vision">Vision</a></li>
+          <li><a href="#pillars">Our Pillars</a></li>
+          <li><a href="#projects">Projects</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Connect</h5>
+        <ul>
+          <li><a href="mailto:info@melghatvikas.org">info@melghatvikas.org</a></li>
+          <li>Melghat, Maharashtra</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Samarth Melghat. Preserving Heritage. Building the Future.</span>
+      <span>Melghat Vikas Foundation</span>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script>
+  // ---- Header background on scroll ----
+  const header = document.getElementById('siteHeader');
+  window.addEventListener('scroll', () => {
+    header.classList.toggle('scrolled', window.scrollY > 40);
+  }, {passive:true});
+
+  // ---- Generic reveal-on-scroll ----
+  const revealEls = document.querySelectorAll('.reveal');
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('in');
+        revealObserver.unobserve(entry.target);
+      }
+    });
+  }, {threshold:0.15});
+  revealEls.forEach(el => revealObserver.observe(el));
+
+  // ---- Warli divider draw-in ----
+  const warli = document.getElementById('warliDivider');
+  const warliObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        warli.classList.add('in');
+        warliObserver.unobserve(entry.target);
+      }
+    });
+  }, {threshold:0.25});
+  warliObserver.observe(warli);
+
+  // ---- Counters ----
+  const counters = document.querySelectorAll('.impact-num');
+  const counterObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+      const el = entry.target;
+      const target = parseFloat(el.dataset.target);
+      const prefix = el.dataset.prefix || '';
+      const suffix = el.dataset.suffix || '';
+      const duration = 1600;
+      const start = performance.now();
+      function tick(now){
+        const p = Math.min(1, (now - start) / duration);
+        const eased = 1 - Math.pow(1 - p, 3);
+        const val = Math.round(target * eased);
+        el.textContent = prefix + val.toLocaleString('en-IN') + suffix;
+        if (p < 1) requestAnimationFrame(tick);
+      }
+      requestAnimationFrame(tick);
+      counterObserver.unobserve(el);
+    });
+  }, {threshold:0.5});
+  counters.forEach(c => counterObserver.observe(c));
+
+  // ---- GSAP ScrollTrigger: landmark pinned showcase + horizontal rivers ----
+  gsap.registerPlugin(ScrollTrigger);
+
+  const mm = gsap.matchMedia();
+
+  mm.add("(min-width: 921px)", () => {
+    // Landmark step activation
+    const steps = gsap.utils.toArray('.landmark-step');
+    const tags = ['01 — PRIMARY LANDMARK', '02 — SPIRITUAL SYMBOL', '03 — MASTER CAMPUS'];
+    const mediaTag = document.getElementById('mediaTag');
+    steps.forEach((step, i) => {
+      ScrollTrigger.create({
+        trigger: step,
+        start: 'top center',
+        end: 'bottom center',
+        onEnter: () => setActiveLandmark(i),
+        onEnterBack: () => setActiveLandmark(i),
+      });
+    });
+    function setActiveLandmark(i){
+      steps.forEach(s => s.classList.remove('active'));
+      steps[i].classList.add('active');
+      document.querySelectorAll('.landmark-img').forEach(img => img.classList.remove('active'));
+      document.querySelector(`.landmark-img[data-index="${i}"]`).classList.add('active');
+      mediaTag.textContent = tags[i];
+    }
+
+    // Horizontal river scroll
+    const track = document.getElementById('riversTrack');
+    const progressWrap = document.getElementById('riverProgress');
+    const progressBar = document.getElementById('riverProgressBar');
+    progressWrap.style.display = 'block';
+
+    function getScrollAmount(){
+      return -(track.scrollWidth - window.innerWidth);
+    }
+
+    let tween = gsap.to(track, {
+      x: getScrollAmount,
+      ease: 'none',
+      scrollTrigger: {
+        trigger: '.rivers-pin',
+        start: 'top top',
+        end: () => `+=${track.scrollWidth - window.innerWidth}`,
+        scrub: 0.6,
+        pin: true,
+        invalidateOnRefresh: true,
+        onUpdate: (self) => {
+          progressBar.style.width = (self.progress * 100) + '%';
+        },
+        onLeave: () => progressWrap.style.opacity = 0,
+        onEnterBack: () => progressWrap.style.opacity = 1,
+      }
+    });
+
+    return () => { progressWrap.style.display = 'none'; };
+  });
+
+  mm.add("(max-width: 920px)", () => {
+    // Mobile fallback: simply reveal landmark steps normally, no pin
+    document.querySelectorAll('.landmark-step').forEach(s => s.classList.add('active'));
+    document.querySelectorAll('.landmark-img').forEach((img,i) => {
+      if(i===0) img.classList.add('active');
+    });
+  });
+</script>
+</body>
+</html>
