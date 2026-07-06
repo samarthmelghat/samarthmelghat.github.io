@@ -882,6 +882,17 @@ nav a:focus-visible {
   .lmark-card--flip .lmark-list li { flex-direction: row; }
 }
 
+@media (prefers-color-scheme: light) and (max-width: 680px) {
+  .lmark-title {
+    color: var(--text-1);
+  }
+
+  .lmark-desc,
+  .lmark-list li {
+    color: var(--text-2);
+  }
+}
+
 
 /* ===== RIVERS SHOWCASE ===== */
 .rivers-showcase {
