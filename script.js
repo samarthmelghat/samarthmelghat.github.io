@@ -203,6 +203,5 @@
       threshold: [0.45, 0.65],
       rootMargin: '-10% 0px -20% 0px'
     });
-
     riverCards.forEach((card) => riverCardObserver.observe(card));
   }
