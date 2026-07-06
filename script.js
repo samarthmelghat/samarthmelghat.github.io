@@ -175,3 +175,4 @@
     }, { threshold: 0.25 });
     showcaseObserver.observe(rshowSection);
   }
+  
