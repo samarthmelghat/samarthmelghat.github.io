@@ -1,5 +1,23 @@
 // ---- Header background on scroll ----
   const header = document.getElementById('siteHeader');
+  const navToggle = document.querySelector('.nav-toggle');
+  const navLinks = document.querySelectorAll('nav a');
+
+  if (header && navToggle) {
+    navToggle.addEventListener('click', () => {
+      const isOpen = header.classList.toggle('nav-open');
+      navToggle.setAttribute('aria-expanded', String(isOpen));
+    });
+
+    navLinks.forEach((link) => {
+      link.addEventListener('click', () => {
+        if (!header.classList.contains('nav-open')) return;
+        header.classList.remove('nav-open');
+        navToggle.setAttribute('aria-expanded', 'false');
+      });
+    });
+  }
+
   window.addEventListener('scroll', () => {
     header.classList.toggle('scrolled', window.scrollY > 40);
   }, {passive:true});
