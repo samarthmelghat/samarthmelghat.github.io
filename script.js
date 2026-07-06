@@ -70,138 +70,108 @@
   }, {threshold:0.5});
   counters.forEach(c => counterObserver.observe(c));
 
-  // ---- Landmark story: stable, responsive scroll activation ----
-  gsap.registerPlugin(ScrollTrigger);
+  // ---- Landmark billboard: reveals handled by the generic .reveal observer above ----
 
-  const landmarkSteps = gsap.utils.toArray('.landmark-step');
-  const landmarkImages = gsap.utils.toArray('.landmark-img');
-  const landmarkTag = document.getElementById('mediaTag');
-  const landmarkSection = document.getElementById('projects');
-  const landmarkTags = ['01 — PRIMARY LANDMARK', '02 — SPIRITUAL SYMBOL', '03 — MASTER CAMPUS'];
-  let activeLandmarkIndex = 0;
+  // ---- Rivers Showcase ----
+  const rshowSection  = document.getElementById('rivers');
+  const rshowTabs     = Array.from(document.querySelectorAll('.rshow-tab'));
+  const rshowSlides   = Array.from(document.querySelectorAll('.rshow-slide'));
+  const rshowBgLayers = Array.from(document.querySelectorAll('.rshow-bg-layer'));
+  const rshowFill     = document.querySelector('.rshow-progress-fill');
+  const rshowCur      = document.querySelector('.rshow-cur');
+  const RSHOW_DURATION = 5500;
 
-  function setActiveLandmark(index) {
-    if (!landmarkSteps.length || !landmarkImages.length) return;
-    const i = Math.max(0, Math.min(index, landmarkSteps.length - 1));
-    const currentImage = document.querySelector('.landmark-img.active');
-    const currentImageIndex = currentImage ? Number(currentImage.getAttribute('data-index')) : -1;
-    if (
-      i === activeLandmarkIndex &&
-      landmarkSteps[i].classList.contains('active') &&
-      currentImageIndex === i
-    ) {
-      return;
-    }
+  let rshowIdx = 0;
+  let rshowTimer = null;
+  let rshowRAF = null;
+  let rshowProgressStart = null;
 
-    landmarkSteps.forEach((step) => step.classList.remove('active'));
-    landmarkImages.forEach((image) => image.classList.remove('active'));
+  function rshowGoTo(idx, resetTimer = true) {
+    const prev = rshowIdx;
+    const total = rshowTabs.length;
+    rshowIdx = ((idx % total) + total) % total;
 
-    const nextStep = landmarkSteps[i];
-    const nextImage = document.querySelector(`.landmark-img[data-index="${i}"]`) || landmarkImages[i];
-
-    if (!nextStep || !nextImage) return;
-
-    nextStep.classList.add('active');
-    nextImage.classList.add('active');
-    activeLandmarkIndex = i;
-
-    if (landmarkTag) {
-      landmarkTag.textContent = landmarkTags[i] || landmarkTags[0];
-    }
-
-    gsap.fromTo(nextImage, { scale: 1.08, opacity: 0.12 }, {
-      scale: 1,
-      opacity: 1,
-      duration: 0.58,
-      ease: 'power2.out',
-      overwrite: 'auto'
+    // tabs
+    rshowTabs.forEach((t, i) => {
+      t.classList.toggle('rshow-active', i === rshowIdx);
+      t.setAttribute('aria-pressed', String(i === rshowIdx));
     });
 
-    gsap.fromTo(nextStep, { y: 14, opacity: 0.45 }, {
-      y: 0,
-      opacity: 1,
-      duration: 0.4,
-      ease: 'power2.out',
-      overwrite: 'auto'
+    // slides
+    rshowSlides.forEach((s, i) => {
+      s.classList.remove('rshow-active', 'rshow-exit');
+      if (i === prev && prev !== rshowIdx) s.classList.add('rshow-exit');
+      if (i === rshowIdx) s.classList.add('rshow-active');
     });
+    setTimeout(() => rshowSlides.forEach(s => s.classList.remove('rshow-exit')), 560);
+
+    // backgrounds
+    rshowBgLayers.forEach((b, i) => b.classList.toggle('rshow-active', i === rshowIdx));
+
+    // counter
+    if (rshowCur) rshowCur.textContent = String(rshowIdx + 1).padStart(2, '0');
+
+    if (resetTimer) rshowStart();
   }
 
-  if (landmarkSteps.length) {
-    setActiveLandmark(0);
+  function rshowStart() {
+    cancelAnimationFrame(rshowRAF);
+    clearTimeout(rshowTimer);
 
-    let landmarkTicking = false;
-    const updateLandmarkByViewportCenter = () => {
-      if (!landmarkSection) {
-        landmarkTicking = false;
-        return;
+    // reset progress bar without transition
+    if (rshowFill) {
+      rshowFill.style.transition = 'none';
+      rshowFill.style.width = '0%';
+      // force reflow so the transition reset applies before we animate
+      rshowFill.getBoundingClientRect();
+    }
+    rshowProgressStart = performance.now();
+
+    function tick(now) {
+      const pct = Math.min(((now - rshowProgressStart) / RSHOW_DURATION) * 100, 100);
+      if (rshowFill) rshowFill.style.width = pct + '%';
+      if (pct < 100) {
+        rshowRAF = requestAnimationFrame(tick);
       }
-
-      const sectionRect = landmarkSection.getBoundingClientRect();
-      const sectionInView = sectionRect.bottom > 0 && sectionRect.top < window.innerHeight;
-      if (!sectionInView) {
-        landmarkTicking = false;
-        return;
-      }
-
-      // Clamp to boundaries so reverse scroll cannot leave the media in stale state.
-      if (sectionRect.top >= 0) {
-        setActiveLandmark(0);
-        landmarkTicking = false;
-        return;
-      }
-      if (sectionRect.bottom <= window.innerHeight) {
-        setActiveLandmark(landmarkSteps.length - 1);
-        landmarkTicking = false;
-        return;
-      }
-
-      const targetY = window.innerHeight * 0.55;
-      let closestIndex = activeLandmarkIndex;
-      let closestDistance = Number.POSITIVE_INFINITY;
-
-      landmarkSteps.forEach((step, i) => {
-        const r = step.getBoundingClientRect();
-        const centerY = r.top + (r.height * 0.5);
-        const distance = Math.abs(centerY - targetY);
-        if (distance < closestDistance) {
-          closestDistance = distance;
-          closestIndex = i;
-        }
-      });
-
-      setActiveLandmark(closestIndex);
-      landmarkTicking = false;
-    };
-
-    const requestLandmarkSync = () => {
-      if (landmarkTicking) return;
-      landmarkTicking = true;
-      requestAnimationFrame(updateLandmarkByViewportCenter);
-    };
-
-    window.addEventListener('scroll', requestLandmarkSync, { passive: true });
-    window.addEventListener('resize', requestLandmarkSync, { passive: true });
-    window.addEventListener('load', requestLandmarkSync, { passive: true });
-    requestLandmarkSync();
+    }
+    rshowRAF = requestAnimationFrame(tick);
+    rshowTimer = setTimeout(() => rshowGoTo(rshowIdx + 1), RSHOW_DURATION);
   }
 
-  // ---- River cards: stable vertical interaction for all devices ----
-  const riverSection = document.getElementById('rivers');
-  const riverCards = Array.from(document.querySelectorAll('.river-card'));
+  function rshowStop() {
+    cancelAnimationFrame(rshowRAF);
+    clearTimeout(rshowTimer);
+  }
 
-  if (riverSection && riverCards.length) {
-    riverCards[0].classList.add('is-active');
+  if (rshowSection && rshowTabs.length) {
+    // click tabs
+    rshowTabs.forEach((tab, i) => tab.addEventListener('click', () => rshowGoTo(i)));
 
-    const riverCardObserver = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting && entry.intersectionRatio >= 0.45) {
-          riverCards.forEach((card) => card.classList.remove('is-active'));
-          entry.target.classList.add('is-active');
-        }
+    // swipe / drag support (mouse + touch)
+    let pointerStartX = 0;
+    const onPointerDown = (e) => { pointerStartX = e.touches ? e.touches[0].clientX : e.clientX; };
+    const onPointerUp   = (e) => {
+      const endX = e.changedTouches ? e.changedTouches[0].clientX : e.clientX;
+      const dx = endX - pointerStartX;
+      if (Math.abs(dx) > 52) rshowGoTo(dx < 0 ? rshowIdx + 1 : rshowIdx - 1);
+    };
+    rshowSection.addEventListener('touchstart', onPointerDown, { passive: true });
+    rshowSection.addEventListener('touchend',   onPointerUp,   { passive: true });
+    rshowSection.addEventListener('mousedown',  onPointerDown);
+    rshowSection.addEventListener('mouseup',    onPointerUp);
+
+    // prev / next arrow buttons
+    const rshowPrevBtn = document.getElementById('rshowPrev');
+    const rshowNextBtn = document.getElementById('rshowNext');
+    if (rshowPrevBtn) rshowPrevBtn.addEventListener('click', () => rshowGoTo(rshowIdx - 1));
+    if (rshowNextBtn) rshowNextBtn.addEventListener('click', () => rshowGoTo(rshowIdx + 1));
+
+    // start only when section is visible
+    const showcaseObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) { rshowStart(); }
+        else { rshowStop(); }
       });
-    }, {
-      threshold: [0.45, 0.65],
-      rootMargin: '-10% 0px -20% 0px'
-    });
-    riverCards.forEach((card) => riverCardObserver.observe(card));
+    }, { threshold: 0.25 });
+    showcaseObserver.observe(rshowSection);
   }
