@@ -151,7 +151,7 @@ header {
   left: 1.2rem;
   right: 1.2rem;
   z-index: 100;
-  padding: 0.8rem 1.2rem;
+  padding: 0.1rem 1.2rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -177,13 +177,20 @@ header.scrolled {
 }
 
 .brand img {
-  width: 34px;
-  height: 34px;
-  border-radius: 10px;
-  background: #ffffff;
-  padding: 4px;
+  /* width: 34px; 
+  
   box-shadow: 0 4px 12px rgba(15, 23, 42, 0.2);
+  */
+  height: 64px;
+  border-radius: 10px;
+  
+  padding: 1px;
+  filter: drop-shadow(0 0 1px rgb(255, 255, 255)) 
+                drop-shadow(0 0 1px rgb(255, 255, 255));
+  
 }
+
+
 
 nav ul {
   list-style: none;
