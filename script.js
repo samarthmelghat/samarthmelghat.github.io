@@ -175,4 +175,31 @@
     }, { threshold: 0.25 });
     showcaseObserver.observe(rshowSection);
   }
+
+
+  var currentLang = "en";
+
+function setLanguage(lang) {
+    var interval = setInterval(function () {
+        var combo = document.querySelector(".goog-te-combo");
+        if (combo) {
+            combo.value = lang;
+            combo.dispatchEvent(new Event("change"));
+            clearInterval(interval);
+        }
+    }, 300);
+}
+
+document.getElementById("langToggle").addEventListener("click", function (e) {
+    e.preventDefault();
+    if (currentLang === "en") {
+        currentLang = "hi";
+        this.textContent = "English";
+        setLanguage("hi");
+    } else {
+        currentLang = "en";
+        this.textContent = "हिन्दी";
+        setLanguage("en");
+    }
+});
   

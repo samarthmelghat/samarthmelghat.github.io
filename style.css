@@ -1901,3 +1901,23 @@ footer li a:hover {
     opacity: 0.88;
   }
 }
+
+
+/* Hide Google Translate top banner */
+.goog-te-banner-frame.skiptranslate {
+    display: none !important;
+}
+
+/* Hide Google branding bar */
+.goog-te-gadget {
+    font-size: 0 !important;
+}
+
+/* Hide "Powered by Google Translate" */
+.goog-logo-link, .skiptranslate {
+    display: none !important;
+}
+
+.goog-te-gadget span {
+    display: none !important;
+}
