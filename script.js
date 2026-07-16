@@ -177,11 +177,19 @@
   }
 
 
-  var currentLang = "en";
+const languages = ["hi", "en", "mr"]; // Default Hindi
+let currentIndex = 0;
+
+const buttonLabels = {
+    hi: "English", // When currently in Hindi, button shows next language
+    en: "मराठी",
+    mr: "हिन्दी"
+};
 
 function setLanguage(lang) {
-    var interval = setInterval(function () {
-        var combo = document.querySelector(".goog-te-combo");
+    const interval = setInterval(function () {
+        const combo = document.querySelector(".goog-te-combo");
+
         if (combo) {
             combo.value = lang;
             combo.dispatchEvent(new Event("change"));
@@ -190,16 +198,26 @@ function setLanguage(lang) {
     }, 300);
 }
 
+window.addEventListener("load", function () {
+    // Set Hindi as default language
+    setLanguage("hi");
+
+    // Set initial button text
+    document.getElementById("langToggle").textContent = "English";
+});
+
 document.getElementById("langToggle").addEventListener("click", function (e) {
     e.preventDefault();
-    if (currentLang === "en") {
-        currentLang = "hi";
-        this.textContent = "English";
-        setLanguage("hi");
-    } else {
-        currentLang = "en";
-        this.textContent = "हिन्दी";
-        setLanguage("en");
-    }
+
+    // Move to next language
+    currentIndex = (currentIndex + 1) % languages.length;
+
+    const selectedLang = languages[currentIndex];
+
+    setLanguage(selectedLang);
+
+    // Update button text to next language in cycle
+    const nextLang = languages[(currentIndex + 1) % languages.length];
+    this.textContent = buttonLabels[selectedLang];
 });
   
